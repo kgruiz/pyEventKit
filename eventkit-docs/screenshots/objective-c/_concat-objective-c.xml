@@ -1,0 +1,3633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<concatobjective-c>
+  <MatchedFilesDirectoryStructureList>
+    <DirectoryEntry>"objective-c/transcribed-images/EKAlarm": ["EKAlarm-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKCalendarItem": ["EKCalendarItem-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKCalendar": ["EKCalendar-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKErrorCode": ["EKErrorCode-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKErrorDomain": ["EKErrorDomain-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKEventStore": ["EKEventStore-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKEvent": ["EKEvent-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKObject": ["EKObject-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKParticipant": ["EKParticipant-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKRecurrenceDayOfWeek": ["EKRecurrenceDayOfWeek-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKRecurrenceEnd": ["EKRecurrenceEnd-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKRecurrenceRule": ["EKRecurrenceRule-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKReminder": ["EKReminder-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKSource": ["EKSource-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKStructuredLocation": ["EKStructuredLocation-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKVirtualConferenceDescriptor": ["EKVirtualConferenceDescriptor-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKVirtualConferenceProvider": ["EKVirtualConferenceProvider-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/EKVirtualConferenceRoomTypeDescriptor": ["EKVirtualConferenceRoomTypeDescriptor-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/accessing-calendar": ["accessing-calendar-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/accessing-event-store": ["accessing-event-store-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/creating-events-reminders": ["creating-events-reminders-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/creating-recurring-event": ["creating-recurring-event-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/main": ["main-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/managing-location-reminders": ["managing-location-reminders-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/retrieving-events-reminders": ["retrieving-events-reminders-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/setting-alarm": ["setting-alarm-transcribed.tex"]</DirectoryEntry>
+    <DirectoryEntry>"objective-c/transcribed-images/updating-notifications": ["updating-notifications-transcribed.tex"]</DirectoryEntry>
+  </MatchedFilesDirectoryStructureList>
+  <FileContents>
+    <File>
+      <Filename>EKAlarm-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKAlarm
+
+Class
+
+\textbf{EKAlarm}
+
+A class that represents an alarm.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKAlarm : EKObject}
+
+Overview
+
+An \texttt{EKAlarm} object represents an alarm in Event Kit. Use the \texttt{alarmWithAbsoluteDate:} and \texttt{alarmWith
+RelativeOffset:} class methods to create an alarm and use the properties to set information about an alarm.
+In macOS Mountain Lion, you can specify an action to trigger when the alarm fires via the \texttt{emailAddress},
+\texttt{soundName}, or \texttt{url} property.
+
+Topics
+
+Creating an Alarm
+
+\texttt{+ alarmWithAbsoluteDate:}
+
+Creates and returns an alarm with an absolute date.
+
+\texttt{+ alarmWithRelativeOffset:}
+
+Creates and returns an alarm with a relative offset.
+
+Accessing Alarm Dates
+
+\texttt{absoluteDate}
+
+The absolute date for the alarm.
+
+\texttt{relativeOffset}
+
+The offset from the start of an event, at which the alarm fires.
+
+Setting GeoFence-based Alarms
+
+\texttt{EKAlarmProximity}
+
+A value indicating whether an alarm is triggered by entering or exiting a region.
+
+\texttt{proximity}
+
+A value indicating how a location-based alarm is triggered.
+
+\texttt{structuredLocation}
+
+The location to trigger an alarm.
+
+Triggering Alarm Actions
+
+These properties are only available in macOS 10.8 or later.
+
+\texttt{EKAlarmType}
+
+A value that specifies what type of action occurs when the alarm triggers.
+
+\texttt{type}
+
+The type of action to trigger when the alarm fires.
+
+\texttt{emailAddress}
+
+The recipient of an email to send when the alarm triggers.
+
+\texttt{soundName}
+
+The name of the sound to play when the alarm triggers.
+
+\texttt{url}
+
+The URL to open when the alarm triggers.
+
+Relationships
+
+Inherits From
+
+EKObject
+
+Conforms To
+
+NSCopying
+
+See Also
+
+Alarms
+
+Setting an alarm
+
+Alert users of events and reminders with an alarm.
+
+EKStructuredLocation
+
+A class that specifies a geofence to activate the alarm of a calendar item.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKCalendarItem-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+Language: Objective-C
+
+EventKit / EKCalendarItem
+
+Class
+
+\textbf{EKCalendarItem}
+
+An abstract superclass for calendar events and reminders.
+
+iOS 5.0+ | iPadOS 5.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKCalendarItem : EKObject}
+
+Mentioned in
+\begin{itemize}
+    \item Creating events and reminders
+    \item Creating a recurring event
+\end{itemize}
+
+Overview
+
+The \texttt{EKCalendarItem} is an abstract superclass for calendar events and reminders. This class provides common properties and methods for accessing properties of calendar items such as the ability to set the calendar, title, and location, as well as support for attaching notes, displaying attendees, setting multiple alarms, and specifying recurrence rules.
+
+Topics
+
+Accessing Calendar Items
+
+\texttt{calendarItemIdentifier}
+
+The calendar item's unique identifier.
+
+\texttt{calendarItemExternalIdentifier}
+
+The calendar item's external identifier as provided by the calendar server.
+
+\texttt{UUID}
+
+The calendar item's unique identifier.
+
+Deprecated
+
+Accessing Calendar Item Properties
+
+\texttt{calendar}
+
+The calendar for the calendar item.
+
+\texttt{title}
+
+The title for the calendar item.
+
+\texttt{location}
+
+The location associated with the calendar item.
+
+\texttt{creationDate}
+
+The date that this calendar item was created.
+
+\texttt{lastModifiedDate}
+
+The date that the calendar item was last modified.
+
+\texttt{timeZone}
+
+The time zone for the calendar item.
+
+\texttt{URL}
+
+The URL for the calendar item.
+
+Attaching Notes
+
+\texttt{hasNotes}
+
+A Boolean value that indicates whether the calendar item has notes.
+
+\texttt{notes}
+
+The notes associated with the calendar item.
+
+Displaying Attendees
+
+\texttt{hasAttendees}
+
+A Boolean value that indicates whether the calendar item has attendees.
+
+\texttt{attendees}
+
+The attendees associated with the calendar item, as an array of \texttt{EKParticipant} objects.
+
+Adding and Removing Alarms
+
+\texttt{hasAlarms}
+
+A Boolean value that indicates whether the calendar item has alarms.
+
+\texttt{- addAlarm:}
+
+Adds an alarm to the receiver.
+
+\texttt{- removeAlarm:}
+
+Removes an alarm from the calendar item.
+
+\texttt{alarms}
+
+The alarms associated with the calendar item, as an array of \texttt{EKAlarm} objects.
+
+Setting Recurrence Rules
+
+\texttt{hasRecurrenceRules}
+
+A Boolean value that indicates whether the calendar item has recurrence rules.
+
+\texttt{- addRecurrenceRule:}
+
+Adds a recurrence rule to the recurrence rule array.
+
+\texttt{- removeRecurrenceRule:}
+
+Removes a recurrence rule from the recurrence rule array.
+
+\texttt{recurrenceRules}
+
+The recurrence rules for the calendar item.
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+Inherited By
+
+\texttt{EKEvent}, \texttt{EKReminder}
+
+See Also
+
+Common objects
+
+\texttt{EKObject}
+
+An abstract superclass for all EventKit classes that have persistent instances.
+
+\texttt{EKSource}
+
+An abstract superclass that represents the account a calendar belongs to.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKCalendar-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKCalendar
+
+Class
+
+\textbf{EKCalendar}
+
+A class that represents a calendar in EventKit.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKCalendar : EKObject}
+
+Mentioned in
+
+\texttt{Retrieving events and reminders}
+
+Overview
+
+Use the properties in this class to get attributes about a calendar, such as its title and type. Use the \texttt{calendarForEntityType:eventStore:} method to create a calendar object.
+
+Topics
+
+Creating Calendars
+
+\texttt{+ calendarForEntityType:eventStore:}
+
+Creates a new calendar that can contain the given entity type.
+
+\texttt{+ calendarWithEventStore+}
+
+Creates and returns a calendar belonging to a specified event store.
+
+\textbf{Deprecated}
+
+Accessing Calendar Properties
+
+\texttt{EKCalendarType}
+
+Possible calendar types.
+
+\texttt{EKCalendarEventAvailabilityMask}
+
+A bitmask indicating the event availability settings that the calendar can support.
+
+\texttt{allowsContentModifications}
+
+A Boolean value that indicates whether you can add, edit, and delete items in the calendar.
+
+\texttt{CGColor}
+
+The calendar's color.
+
+\texttt{color}
+
+The calendar's color.
+
+\texttt{immutable}
+
+A Boolean value indicating whether the calendar's properties can be edited or deleted.
+
+\texttt{title}
+
+The calendar's title.
+
+\texttt{type}
+
+The calendar's type.
+
+\texttt{allowedEntityTypes}
+
+The entity types this calendar can contain.
+
+\texttt{source}
+
+The source object representing the account to which this calendar belongs.
+
+\texttt{subscribed}
+
+A Boolean value indicating whether the calendar is a subscribed calendar.
+
+\texttt{supportedEventAvailabilities}
+
+The event availability settings supported by this calendar, as indicated by a bitmask.
+
+\texttt{calendarIdentifier}
+
+A unique identifier for the calendar.
+
+\texttt{DATE\_COMPONENTS\_DO\_NOT\_USE}
+
+A deprecated function.
+
+\textbf{Deprecated}
+
+\texttt{DATE\_COMPONENTS\_DO\_NOT\_USE}
+
+A deprecated function.
+
+\textbf{Deprecated}
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+See Also
+
+Calendars
+
+\texttt{EKParticipant}
+
+A class that represents person, group, or room invited to a calendar event.
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKErrorCode-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKErrorCode
+
+Enumeration
+
+\textbf{EKErrorCode}
+
+Error codes for EventKit errors.
+
+iOS | iPadOS | Mac Catalyst | macOS | visionOS | watchOS
+
+\texttt{enum EKErrorCode: NSInteger;}
+
+Topics
+
+Constants
+
+\textbf{EKErrorEventNotMutable}
+
+The event isn't mutable and you can't save or delete it.
+
+\textbf{EKErrorNoCalendar}
+
+The event isn't associated with a calendar.
+
+\textbf{EKErrorNoStartDate}
+
+The event has no start date set.
+
+\textbf{EKErrorNoEndDate}
+
+The event has no end date set.
+
+\textbf{EKErrorDatesInverted}
+
+The event's end date occurs before its start date.
+
+\textbf{EKErrorInternalFailure}
+
+An internal error occurred.
+
+\textbf{EKErrorCalendarReadOnly}
+
+The calendar is read-only and you can't add events to it.
+
+\textbf{EKErrorDurationGreaterThanRecurrence}
+
+The duration of an event is greater than its recurrence interval.
+
+\textbf{EKErrorAlarmGreaterThanRecurrence}
+
+The alarm interval is greater than the recurrence interval.
+
+\textbf{EKErrorStartDateTooFarInFuture}
+
+The start date is further into the future than the calendar can display.
+
+\textbf{EKErrorStartDateCollidesWithOtherOccurrence}
+
+The event's start date collides with another occurrence of the event.
+
+\textbf{EKErrorObjectBelongsToDifferentStore}
+
+The object belongs to a different calendar store.
+
+\textbf{EKErrorInvitesCannotBeMoved}
+
+You can't move the event because it's an invitation.
+
+\textbf{EKErrorInvalidSpan}
+
+The system encountered an invalid span during a save or deletion.
+
+\textbf{EKErrorCalendarHasNoSource}
+
+You can't save the calendar without setting a source first.
+
+\textbf{EKErrorCalendarSourceCannotBeModified}
+
+You can't move the calendar to another source.
+
+\textbf{EKErrorCalendarIsImmutable}
+
+The calendar is immutable and you can't modify or delete it.
+
+\textbf{EKErrorSourceDoesNotAllowCalendarAddDelete}
+
+The source doesn't allow you to add or delete calendars.
+
+\textbf{EKErrorRecurringReminderRequiresDueDate}
+
+The recurring reminder requires a due date.
+
+\textbf{EKErrorStructuredLocationsNotSupported}
+
+The source to which this calendar belongs doesn't support structured locations.
+
+\textbf{EKErrorReminderLocationsNotSupported}
+
+The source doesn't support locations on reminders.
+
+\textbf{EKErrorAlarmProximityNotSupported}
+
+The source doesn't allow geofences on alarms.
+
+\textbf{EKErrorCalendarDoesNotAllowEvents}
+
+The calendar doesn't allow you to add events.
+
+\textbf{EKErrorCalendarDoesNotAllowReminders}
+
+The calendar doesn't allow you to add reminders.
+
+\textbf{EKErrorSourceDoesNotAllowReminders}
+
+The source doesn't allow calendars supporting reminder entity types.
+
+\textbf{EKErrorSourceDoesNotAllowEvents}
+
+The source doesn't allow calendars supporting event entity types.
+
+\textbf{EKErrorPriorityIsInvalid}
+
+The priority number for the reminder is invalid.
+
+\textbf{EKErrorInvalidEntityType}
+
+The entity type is invalid.
+
+\textbf{EKErrorProcedureAlarmsNotMutable}
+
+You can't create or modify procedure alarms.
+
+\textbf{EKErrorEventStoreNotAuthorized}
+
+The user hasn't authorized your app to access events or reminders.
+
+\textbf{EKErrorOSNotSupported}
+
+The action isn't supported on the current operating system.
+
+\textbf{EKErrorInvalidInviteReplyCalendar}
+
+The calendar is invalid or nil.
+
+\textbf{EKErrorNotificationsCollectionFlagNotSet}
+
+The notification collection doesn't have the notifications collection flag.
+
+\textbf{EKErrorSourceMismatch}
+
+The object's source doesn't match its container's source.
+
+\textbf{EKErrorNotificationCollectionMismatch}
+
+The notification collection that contains this notification doesn't match the collection the system is trying to save.
+
+\textbf{EKErrorNotificationSavedWithoutCollection}
+
+The notification can't save because you haven't added it to a notification collection and saved the collection first.
+
+\textbf{EKErrorLast}
+
+This error is for internal use.
+
+Enumeration Cases
+
+\textbf{EKErrorReminderAlarmContainsEmail0rUrl}
+
+See Also
+
+Errors
+
+\textbf{EKErrorDomain}
+
+A string that identifies the EventKit error domain.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKErrorDomain-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKErrorDomain
+
+Global Variable
+
+\textbf{EKErrorDomain}
+
+A string that identifies the EventKit error domain.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{extern NSString * const EKErrorDomain;}
+
+See Also
+
+Errors
+
+\texttt{EKErrorCode}
+
+Error codes for EventKit errors.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKEventStore-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKEventStore
+
+Class
+
+\textbf{EKEventStore}
+
+An object that accesses a person's calendar events and reminders and supports the scheduling of new events.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+@interface EKEventStore : NSObject
+
+Mentioned in
+
+\href{}{}Retrieving events and reminders
+
+\href{}{}Accessing the event store
+
+\href{}{}Creating events and reminders
+
+Overview
+
+The EKEventStore class is an app's point of contact for accessing calendar and reminder data.
+
+After initializing the event store, you must request access to events or reminders before attempting to fetch or create data. To request access to reminders, call \textit{requestFullAccessToRemindersWithCompletion:}. To request access to events, call \textit{requestWriteOnlyAccessToEventsWithCompletion:} or \textit{requestFullAccessToEventsWithCompletion:}.
+
+\textbf{Important}
+
+To request access to events and reminders, your app needs to include permission strings in its Info.plist file that explain to someone why the app needs access. For more information, see \href{}{}Accessing the event store
+
+A typical workflow for using an event store is:
+
+\begin{enumerate}
+    \item Create a predicate, or a search query for events, with \textit{predicateForEventsWithStartDate:endDate:calendars:}.
+    \item Fetch and process events that match the predicate with the \textit{eventsMatchingPredicate:} and \textit{enumerateEventsMatchingPredicate:usingBlock:} methods.
+    \item Save and delete events from the event store with the \textit{saveEvent:span:commit:error:} and \textit{removeEvent:span:commit:error:} methods.
+\end{enumerate}
+
+Use similar methods to access and manipulate reminders.
+
+After receiving an object from an event store, don't use that object with a different event store. This restriction applies to \textit{EKObject} subclasses such as \textit{EKEvent, EKReminder, EKCalendar,} and \textit{EKSource}, as well as predicates that the event store creates. For example, don't fetch an event from one event store, modify the event, and then pass it to \textit{saveEvent:span:error:} in a different store.
+
+Topics
+
+Creating event stores
+
+\textminus init
+
+Creates a new event store.
+
+\textminus initWithSources:
+
+Creates an event store that contains data for the specified sources.
+
+@property(readonly, nonatomic) NSString \*eventStoreIdentifier
+
+The unique identifier for the event store.
+
+\textminus initWithAccessToEntityTypes:
+
+Initializes access to the event store with support for the given entity type.
+
+Deprecated
+
+Requesting access to events and reminders
+
+\textminus requestWriteOnlyAccessToEventsWithCompletion:
+
+Prompts the person using your app to grant or deny write access to event data.
+
+\textminus requestFullAccessToEventsWithCompletion:
+
+Prompts people to grant or deny read and write access to event data.
+
+\textminus requestFullAccessToRemindersWithCompletion:
+
+Prompts people to grant or deny read and write access to reminders.
+
+\text{+} authorizationStatusForEntityType:
+
+Determines the authorization status for the given entity type.
+
+typedef void(^EKEventStoreRequestAccessCompletionHandler)(bool granted, NSError*error);
+
+The signature for a closure that EventKit calls when requesting access to event and reminder data.
+
+NSCalendarsFullAccessUsageDescription
+
+A message that tells people why the app is requesting access to read and write their calendar data.
+
+NSCalendarsWriteOnlyAccessUsageDescription
+
+A message that tells people why the app is requesting access to create calendar events.
+
+NSRemindersFullAccessUsageDescription
+
+A message that tells people why the app is requesting access to read and write their reminders data.
+
+Accessing account sources
+
+@property(readonly, nonatomic) NSArray \*sources
+
+An unordered array of objects that represent accounts that contain calendars.
+
+@property(nonatomic, weak) id <EKSourceDelegate> delegateSources
+
+The event sources delegated to the person using your app.
+
+\textminus sourceWithIdentifier:
+
+Locates an event source with the specified identifier.
+
+Saving and restoring state
+
+\textminus commit:
+
+Commits all unsaved changes to the event store.
+
+\textminus reset
+
+Reverts the event store to its saved state.
+
+\textminus refreshSourcesIfNeeded
+
+Pulls new data from remote sources, if necessary.
+
+Accessing calendars
+
+@property(nonatomic, readonly) EKCalendar *defaultCalendarForNewEvents
+
+The calendar that events are added to by default, as specified by user settings.
+
+@property(nonatomic, readonly) EKCalendar *defaultCalendarForNewReminders
+
+Identifies the default calendar for adding reminders to, as specified by user settings.
+
+\textminus calendarsForEntityType:
+
+Identifies the calendars that support a given entity type, such as reminders or events.
+
+\textminus calendarWithIdentifier:
+
+Locates a calendar with the specified identifier.
+
+\textminus saveCalendar:commit:error:
+
+Saves a calendar to the event store by either committing or batching the changes.
+
+\textminus removeCalendar:commit:error:
+
+Removes a calendar from the event store by either committing or batching the changes.
+
+@property(nonatomic, readonly) NSArray *calendars
+
+The calendars associated with the event store.
+
+Deprecated
+
+Accessing calendar events
+
+\textminus eventWithIdentifier:
+
+Locates the first occurrence of an event with a given identifier.
+
+\textminus calendarItemWithIdentifier:
+
+Locates a reminder or the first occurrence of an event with the specified identifier.
+
+\textminus calendarItemsWithExternalIdentifier:
+
+Locates all reminders or the first occurrences of all events with the specified external identifier.
+
+Removing calendar events
+
+\textminus removeEvent:span:error:
+
+Removes an event from the event store.
+
+\textminus removeEvent:span:commit:error:
+
+Removes an event or recurring events from the event store by either committing or batching the changes.
+
+\textminus removeReminder:commit:error:
+
+Removes a reminder from the event store by either committing or batching the changes.
+
+Saving calendar events
+
+\textminus saveEvent:span:error:
+
+Saves changes to an event permanently.
+
+\textminus saveEvent:span:commit:error:
+
+Saves an event or recurring events to the event store by either committing or batching the changes.
+
+\textminus saveReminder:commit:error:
+
+Saves changes to a reminder by either committing or batching the changes.
+
+Searching calendars
+
+\textminus enumerateEventsMatchingPredicate:usingBlock:
+
+Finds all events that match a given predicate and calls a given callback for each event found.
+
+\textminus eventsMatchingPredicate:
+
+Finds all events that match a given predicate.
+
+\textminus fetchRemindersMatchingPredicate:completion:
+
+Fetches reminders that match a given predicate.
+
+\textminus cancelFetchRequest
+
+Cancels the request to fetch reminders.
+
+\textminus predicateForEventsWithStartDate:endDate:calendars:
+
+Creates a predicate to identify events that occur within a given date range.
+
+\textminus predicateForRemindersInCalendars:
+
+Creates a predicate to identify all reminders in a collection of calendars.
+
+\textminus predicateForCompleteRemindersWithCompletionDateStarting:ending:calendars:
+
+Creates a predicate to identify all completed reminders that occur within a given date range.
+
+\textminus predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:
+
+Creates a predicate to identify all incomplete reminders that occur within a given date range
+
+typedef void(^EKEventSearchCallback)(EKEvent *event, BOOL *stop);
+
+The signature for a closure that operates on events when enumerating them.
+
+Deprecated methods
+
+\textminus requestAccessToEntityTypes:completion:
+
+Prompts the person using your app to grant or deny access to event or reminder data.
+
+Deprecated
+
+Relationships
+
+Inherits From
+
+NSObject
+
+See Also
+
+Essentials
+
+\href{}{}Accessing the event store
+
+Request access to a person's calendar data through the event store.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKEvent-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKEvent
+
+Class
+
+\textbf{EKEvent}
+
+A class that represents an event in a calendar.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKEvent : EKCalendarItem}
+
+Mentioned in
+\begin{itemize}
+    \item Creating events and reminders
+    \item Retrieving events and reminders
+\end{itemize}
+
+Overview
+
+Use the \texttt{eventWithEventStore:} method to create a new event. Use the properties in the class to get and
+modify certain information about an event. Other properties, such as the event's title and calendar, are inherited
+from the parent class \texttt{EKCalendarItem}.
+
+Topics
+
+Creating Events
+
+\texttt{+ eventWithEventStore:}
+
+Creates and returns a new event belonging to a specified event store.
+
+Scheduling Events
+
+\texttt{EKEventStatus}
+
+The event's status.
+
+\texttt{EKEventAvailability}
+
+The event's availability setting for scheduling purposes.
+
+Comparing Events
+
+\texttt{- compareStartDateWithEvent:}
+
+Compares the start date of the receiving event with the start date of another event.
+
+Accessing Event Properties
+
+\texttt{eventIdentifier}
+
+A unique identifier for the event.
+
+\texttt{availability}
+
+The availability setting for the event.
+
+\texttt{startDate}
+
+The start date of the event.
+
+\texttt{endDate}
+
+The end date for the event.
+
+\texttt{allDay}
+
+A Boolean value that indicates whether the event is an all-day event.
+
+\texttt{occurrenceDate}
+
+The original occurrence date of an event if it is part of a recurring series.
+
+\texttt{isDetached}
+
+A Boolean value that indicates whether an event is a detached instance of a repeating event.
+
+\texttt{organizer}
+
+The organizer associated with the event.
+
+\texttt{status}
+
+The status of the event.
+
+\texttt{birthdayContactIdentifier}
+
+The contact identifier of the person for this birthday event.
+
+\texttt{structuredLocation}
+
+The event's location with a potential geocoordinate.
+
+\texttt{birthdayPersonID}
+
+The Address Book framework record identifier of the person for this birthday event.
+
+Deprecated
+
+\texttt{birthdayPersonUniqueID}
+
+The Address Book framework record identifier of the person for this birthday event.
+
+Deprecated
+
+Refreshing Event Data
+
+\texttt{- refresh}
+
+Updates the event's data with the current information in the Calendar database.
+
+Relationships
+
+Inherits From
+
+\texttt{EKCalendarItem}
+
+See Also
+
+Events and reminders
+
+\begin{itemize}
+    \item Creating events and reminders
+    Create and modify events and reminders in a person's database.
+    \item Retrieving events and reminders
+    Fetch events and reminders from the Calendar database.
+    \item Updating with notifications
+    Register for notifications about changes and keep your app up to date.
+    \item \{\} Managing Location-Based Reminders
+    Add, fetch, complete, remove, and sort location-based reminders in your app.
+\end{itemize}
+
+\texttt{EKReminder}
+
+A class that represents a reminder in a calendar.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKObject-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKObject
+
+Class
+
+\textbf{EKObject}
+
+An abstract superclass for all EventKit classes that have persistent instances.
+
+IOS 13.0+ | iPadOS 13.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 6.0+
+
+\texttt{@interface EKObject : NSObject}
+
+Overview
+
+EKObject provides fine control when saving and restoring property settings. For example, you can find out if a persistent object was modified locally and whether it needs to be saved. If the object has changed in the event store since it was fetched, you can refresh the local copy by keeping local changes or by removing local changes. You can also roll back the object to the state when it was first fetched.
+
+Topics
+
+Saving and Restoring State
+
+\texttt{hasChanges}
+
+Returns whether this object or any of the objects it contains has uncommitted changes.
+
+\texttt{new}
+
+A Boolean value that indicates whether this object has ever been saved.
+
+\texttt{- refresh}
+
+Merges changes to this object with the latest saved values.
+
+\texttt{- reset}
+
+Returns this object to its saved state.
+
+\texttt{- rollback}
+
+Rolls back the property values of this object to its original state when it was first fetched.
+
+Relationships
+
+Inherits From
+
+\texttt{NSObject}
+
+Inherited By
+
+\texttt{EKAlarm}
+
+\texttt{EKCalendar}
+
+\texttt{EKCalendarItem}
+
+\texttt{EKParticipant}
+
+\texttt{EKRecurrenceRule}
+
+\texttt{EKSource}
+
+\texttt{EKStructuredLocation}
+
+See Also
+
+Common objects
+
+\texttt{EKCalendarItem}
+
+An abstract superclass for calendar events and reminders.
+
+\texttt{EKSource}
+
+An abstract superclass that represents the account a calendar belongs to.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKParticipant-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+\textbf{EventKit} / EKParticipant
+
+Class
+
+\textbf{EKParticipant}
+
+A class that represents person, group, or room invited to a calendar event.
+
+iOS 4.0+ $|$ iPadOS 4.0+ $|$ Mac Catalyst 13.1+ $|$ macOS 10.8+ $|$ visionOS 1.0+ $|$ watchOS 2.0+
+
+\texttt{@interface EKParticipant : EKObject}
+
+Overview
+
+Do not create \texttt{EKParticipant} objects directly. Instead, use the property \texttt{attendees} on \texttt{EKCalendarItem} to return an array of \texttt{EKParticipant} objects.
+
+EventKit cannot add participants to an event nor change participant information. Use the properties in this class to get information about a participant.
+
+A participant can be a person, group, room, or other resource.
+
+Topics
+
+Defining Participants
+
+\texttt{EKParticipantRole}
+
+The participant's role for an event.
+
+\texttt{EKParticipantType}
+
+The type of participant.
+
+\texttt{EKParticipantStatus}
+
+The participant's attendance status for an event.
+
+\texttt{EKParticipantScheduleStatus}
+
+The participant's scheduled status.
+
+Accessing Participant Properties
+
+\texttt{currentUser}
+
+A Boolean value indicating whether this participant represents the owner of this account.
+
+\texttt{name}
+
+The participant's name.
+
+\texttt{participantRole}
+
+The participant's role in the event.
+
+\texttt{participantStatus}
+
+The participant's attendance status.
+
+\texttt{participantType}
+
+The participant's type.
+
+\texttt{URL}
+
+The URL representing this participant.
+
+\texttt{contactPredicate}
+
+A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
+
+Finding Participant Address Book Records
+
+\texttt{- ABRecordWithAddressBook:}
+
+Returns the address book record that represents the participant.
+
+\texttt{-ABPersonInAddressBook:}
+
+Returns the address book record that represents the participant.
+\newline
+\textbf{Deprecated}
+
+\texttt{ABAddressBookRef}
+
+A reference to an \texttt{ABAddressBook} object.
+\newline
+\textbf{Deprecated}
+
+\texttt{ABRecordRef}
+
+A reference to an \texttt{ABRecord} object or any of its derivedopaque types.
+\newline
+\textbf{Deprecated}
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+Conforms To
+
+\texttt{NSCopying}
+
+See Also
+
+Calendars
+
+\texttt{EKCalendar}
+
+A class that represents a calendar in EventKit.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKRecurrenceDayOfWeek-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+Available on iOS 4.0 and later
+
+EventKit / EKRecurrenceDayOfWeek
+
+Class
+
+\textbf{EKRecurrenceDayOfWeek}
+
+A class that represents the day of the week.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+@interface EKRecurrenceDayOfWeek : NSObject
+
+Mentioned in
+
+Creating a recurring event
+
+Overview
+
+The EKRecurrenceDayOfWeek class represents a day of the week for use with an EKRecurrenceRule object.
+
+A day of the week can optionally have a week number, indicating a specific day in the recurrence rule's frequency. For example, a day of the week with a day value of Tuesday and a week number of 2 would represent the second Tuesday of every month in a monthly recurrence rule, and the second Tuesday of every year in a yearly recurrence rule. A day of the week with a week number of 0 ignores its week number.
+
+Topics
+
+Creating a Day of the Week
+
+\textit{EKWeekday}
+
+The day of the week.
+
+\textit{dayOfWeek:}
+
+Creates and returns a day of the week with a given day.
+
++ \textit{dayOfWeek: weekNumber:}
+
+Creates and returns an autoreleased day of the week with a given day and week number.
+
+- \textit{initWithDayOfTheWeek: weekNumber:}
+
+Initializes and returns a day of the week with a given day and week number.
+
+Accessing Properties of a Day of the Week
+
+\textit{dayOfTheWeek}
+
+The day of the week.
+
+\textit{weekNumber}
+
+The week number of the day of the week.
+
+Relationships
+
+Inherits From
+
+\textit{NSObject}
+
+Conforms To
+
+\textit{NSCopying, NSSecureCoding}
+
+See Also
+
+Recurrence
+
+Creating a recurring event
+
+Set up an event or reminder that repeats.
+
+\textit{EKRecurrenceEnd}
+
+A class that defines the end of a recurrence rule.
+
+\textit{EKRecurrenceRule}
+
+A class that describes the pattern for a recurring event.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKRecurrenceEnd-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKRecurrenceEnd
+
+Class
+
+\textbf{EKRecurrenceEnd}
+
+A class that defines the end of a recurrence rule.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKRecurrenceEnd : NSObject}
+
+Mentioned in
+
+Creating a recurring event
+
+Overview
+
+The \texttt{EKRecurrenceEnd} class defines the end of a recurrence rule defined by an \texttt{EKRecurrenceRule} object.
+
+The recurrence end can be specified by a date (date-based) or by a maximum count of occurrences (count- based). An event that is intended to continue indefinitely should have its \texttt{EKRecurrenceEnd} set to \texttt{nil}.
+
+Topics
+
+Creating a Recurrence End
+
+\texttt{+ recurrenceEndWithEndDate:}
+
+Initializes and returns a date-based recurrence end with a given end date.
+
+\texttt{+ recurrenceEndWithOccurrenceCount:}
+
+Initializes and returns a count-based recurrence end with a given maximum occurrence count.
+
+Accessing Recurrence End Properties
+
+\texttt{endDate}
+
+The end date of the recurrence end, or \texttt{nil} if the recurrence end is count-based.
+
+\texttt{occurrenceCount}
+
+The occurrence count of the recurrence end, or \texttt{0} if the recurrence end is date-based.
+
+Relationships
+
+Inherits From
+
+\texttt{NSObject}
+
+Conforms To
+
+\texttt{NSCopying}, \texttt{NSSecureCoding}
+
+See Also
+
+Recurrence
+
+Creating a recurring event
+
+Set up an event or reminder that repeats.
+
+\texttt{EKRecurrenceDayOfWeek}
+
+A class that represents the day of the week.
+
+\texttt{EKRecurrenceRule}
+
+A class that describes the pattern for a recurring event.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKRecurrenceRule-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKRecurrenceRule
+
+Class
+
+\textbf{EKRecurrenceRule}
+
+A class that describes the pattern for a recurring event.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKRecurrenceRule : EKObject}
+
+Mentioned in
+
+Creating a recurring event
+
+Overview
+
+After you create a recurrence rule, assign it to an event with the method of \texttt{EKEvent}.
+
+Recurrence rules can have an end, represented by an \texttt{EKRecurrenceEnd} object. The end can be based on a specific date or a maximum number of occurrences.
+
+\noindent\fbox{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+        Note
+
+        It is currently not possible to directly modify an \texttt{EKRecurrenceRule} or any of its properties. This functionality is achieved by creating a new \texttt{EKRecurrenceRule} and setting an event or reminder to use the newly created rule.
+    \end{minipage}
+}
+
+Topics
+
+Creating a Basic Recurrence Rule
+
+\texttt{EKSpan}
+
+An object that indicates whether modifications should apply to a single event or all future events of a recurring event.
+
+\texttt{- initRecurrenceWithFrequency: interval:end:}
+
+Initializes and returns a simple recurrence rule with a given frequency, interval, and end.
+
+Creating a Complex Recurrence Rule
+
+\texttt{- initRecurrenceWithFrequency: interval:daysOfTheWeek: daysOfTheMonth:monthsOfThe
+Year:weeksOfTheYear:daysOfTheYear:setPositions:end:}
+
+Initializes and returns a recurrence rule with a given frequency and additional scheduling information.
+
+Accessing Recurrence Rule Properties
+
+\texttt{EKRecurrenceFrequency}
+
+The frequency for recurrence rules.
+
+\texttt{calendarIdentifier}
+
+The identifier for the recurrence rule's calendar.
+
+\texttt{recurrenceEnd}
+
+Indicates when the recurrence rule ends.
+
+\texttt{frequency}
+
+The frequency of the recurrence rule.
+
+\texttt{interval}
+
+Specifies how often the recurrence rule repeats over the unit of time indicated by its frequency.
+
+\texttt{firstDayOfTheWeek}
+
+Indicates which day of the week the recurrence rule treats as the first day of the week.
+
+\texttt{daysOfTheWeek}
+
+The days of the week associated with the recurrence rule, as an array of \texttt{EKRecurrenceDayOfWeek} objects.
+
+\texttt{daysOfTheMonth}
+
+The days of the month associated with the recurrence rule, as an array of \texttt{NSNumber} objects.
+
+\texttt{daysOfTheYear}
+
+The days of the year associated with the recurrence rule, as an array of \texttt{NSNumber} objects.
+
+\texttt{weeksOfTheYear}
+
+The weeks of the year associated with the recurrence rule, as an array of \texttt{NSNumber} objects.
+
+\texttt{monthsOfTheYear}
+
+The months of the year associated with the recurrence rule, as an array of \texttt{NSNumber} objects.
+
+\texttt{setPositions}
+
+An array of ordinal numbers that filters which recurrences to include in the recurrence rule's frequency.
+
+\texttt{EK\_LOSE\_FRACTIONAL\_SECONDS\_DO\_NOT\_USE}
+
+A deprecated function.
+
+\textbf{Deprecated}
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+Conforms To
+
+\texttt{NSCopying}
+
+See Also
+
+Recurrence
+
+Creating a recurring event
+
+Set up an event or reminder that repeats.
+
+\texttt{EKRecurrenceDayOfWeek}
+
+A class that represents the day of the week.
+
+\texttt{EKRecurrenceEnd}
+
+A class that defines the end of a recurrence rule.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKReminder-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKReminder
+
+Class
+
+\textbf{EKReminder}
+
+A class that represents a reminder in a calendar.
+
+iOS 6.0+ | iPadOS 6.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKReminder : EKCalendarItem}
+
+Mentioned in
+
+\begin{itemize}
+    \item Creating events and reminders
+\end{itemize}
+
+Overview
+
+Use the \texttt{reminderWithEventStore:} method to create a new reminder. Use the properties in the class to get and modify certain information about a reminder.
+
+Topics
+
+Creating a Reminder
+
+\begin{itemize}
+\item[+] \texttt{reminderWithEventStore:}
+\begin{itemize}
+    \item Creates and returns a new reminder in the given event store.
+\end{itemize}
+\end{itemize}
+
+Accessing Reminder Properties
+
+\texttt{EKReminderPriority}
+
+The priority of the reminder.
+
+\texttt{priority}
+
+The reminder's priority.
+
+\texttt{startDateComponents}
+
+The start date of the task.
+
+\texttt{dueDateComponents}
+
+The date by which the reminder should be completed.
+
+\texttt{completed}
+
+A Boolean value determining whether or not the reminder is marked completed.
+
+\texttt{completionDate}
+
+The date on which the reminder was completed.
+
+Relationships
+
+Inherits From
+
+\texttt{EKCalendarItem}
+
+See Also
+
+Events and reminders
+
+\begin{itemize}
+    \item Creating events and reminders
+    \begin{itemize}
+        \item Create and modify events and reminders in a person's database.
+    \end{itemize}
+    \item Retrieving events and reminders
+    \begin{itemize}
+        \item Fetch events and reminders from the Calendar database.
+    \end{itemize}
+    \item Updating with notifications
+    \begin{itemize}
+        \item Register for notifications about changes and keep your app up to date.
+    \end{itemize}
+    \item Managing Location-Based Reminders
+    \begin{itemize}
+        \item Add, fetch, complete, remove, and sort location-based reminders in your app.
+    \end{itemize}
+\end{itemize}
+
+\texttt{EKEvent}
+
+A class that represents an event in a calendar.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKSource-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKSource
+
+Class
+
+\textbf{EKSource}
+
+An abstract superclass that represents the account a calendar belongs to.
+
+iOS 5.0+ | iPadOS 5.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKSource : EKObject}
+
+Overview
+
+You do not create instances of this class; instead, you retrieve \texttt{EKSource} objects from an \texttt{EKEventStore} object. Use the \texttt{sources} property to get all the \texttt{EKSource} objects for an event store, and use the methods in this class to access properties of the source object.
+
+Topics
+
+Accessing Source Properties
+
+\texttt{EKSourceType}
+
+The type of source object.
+
+\texttt{sourceIdentifier}
+
+A unique identifier for the source object.
+
+\texttt{sourceType}
+
+The type of this source object.
+
+\texttt{title}
+
+The name of this source object.
+
+Accessing Calendars
+
+\texttt{- calendarsForEntityType:}
+
+Returns the calendars that belong to this source object that support a particular entity type.
+
+\texttt{calendars}
+
+The calendars that belong to this source object.
+
+\textit{Deprecated}
+
+Entity Type
+
+\texttt{EKEntityType}
+
+The type of entities allowed for a source.
+
+Instance Properties
+
+\texttt{isDelegate}
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+See Also
+
+Common objects
+
+\texttt{EKCalendarItem}
+
+An abstract superclass for calendar events and reminders.
+
+\texttt{EKObject}
+
+An abstract superclass for all EventKit classes that have persistent instances.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKStructuredLocation-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKStructuredLocation
+
+Class
+
+\textbf{EKStructuredLocation}
+
+A class that specifies a geofence to activate the alarm of a calendar item.
+
+iOS 6.0+ | iPadOS 6.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\texttt{@interface EKStructuredLocation : EKObject}
+
+Overview
+
+Use \texttt{locationWithTitle:} to create a new structured location, then set it to the \texttt{structuredLocation} property of an \texttt{EKAlarm} object.
+
+Topics
+
+Creating Structured Locations
+
++ \texttt{locationWithTitle:}
+
+Creates a new structured location with the specified title.
+
++ \texttt{locationWithMapItem:}
+
+Creates a new structured location with the specified map item.
+
+Accessing Structured Location Properties
+
+\texttt{title}
+
+The title of the location.
+
+\texttt{geoLocation}
+
+The core location.
+
+\texttt{radius}
+
+A minimum distance from the core location that would trigger the alarm or reminder.
+
+Relationships
+
+Inherits From
+
+\texttt{EKObject}
+
+Conforms To
+
+\texttt{NSCopying}
+
+See Also
+
+Alarms
+
+\begin{itemize}
+    \item Setting an alarm\\
+    Alert users of events and reminders with an alarm.
+\end{itemize}
+
+\texttt{EKAlarm}
+
+A class that represents an alarm.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKVirtualConferenceDescriptor-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKVirtualConferenceDescriptor
+
+Class
+
+\textbf{EKVirtualConferenceDescriptor}
+
+Details about a virtual conference that uses a custom room type.
+
+iOS 15.0+ | iPadOS 15.0+ | Mac Catalyst 15.0+ | macOS 12.0+ | visionOS 1.0+ | watchOS 8.0+
+
+\texttt{@interface EKVirtualConferenceDescriptor : NSObject}
+
+\section*{Overview}
+
+When users add events to their calendars and use one of the room types that your provider defines, EventKit requests a virtual conference descriptor from your provider. Each virtual conference descriptor contains:
+
+\begin{itemize}
+    \item A user-visible name for the virtual conference
+    \item One or more URLs that the users open to join the virtual conference
+    \item Optional details about the conference that may be helpful to users
+\end{itemize}
+
+Calendar uses the first URL that you provide as the preferred way for users to join a virtual conference and displays additional URLs as links in the virtual conference details.
+
+\textbf{Important}
+
+Events that use your virtual conference descriptors may sync to other devices where your app isn't installed. To support links to your virtual conference regardless of whether your app is installed, adopt universal links in your app. Universal links let you specify HTTP URLs that open your app if it's installed or open a corresponding web page if it's not. For more information about adopting universal links in your app, see \href{Supporting universal links in your app}{Supporting universal links in your app}.
+
+\section*{Topics}
+
+\subsection*{Creating Conference Descriptors}
+
+\texttt{- initWithTitle:URLDescriptors:conferenceDetails:}
+
+Creates an object that describes a virtual conference, including a name and URL to join the conference.
+
+\subsection*{Configuring Virtual Conferences}
+
+\texttt{title}
+
+The user-visible name of the virtual conference.
+
+\texttt{URLDescriptors}
+
+An array that contains objects with details about where to join the virtual conference.
+
+\texttt{EKVirtualConferenceURLDescriptor}
+
+Details about how users join a virtual conference, including a title and URL.
+
+\texttt{conferenceDetails}
+
+Additional information about the conference that users may find helpful.
+
+\section*{Relationships}
+
+\subsection*{Inherits From}
+
+\texttt{NSObject}
+
+\section*{See Also}
+
+\subsection*{Virtual conferences}
+
+\texttt{EKVirtualConferenceProvider}
+
+An object that associates virtual conferencing details with an event object in a user's calendar.
+
+\texttt{EKVirtualConferenceRoomTypeDescriptor}
+
+Details about a room where virtual conferences take place.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKVirtualConferenceProvider-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKVirtualConferenceProvider
+
+Class
+
+\textbf{EKVirtualConferenceProvider}
+
+An object that associates virtual conferencing details with an event object in a user's calendar.
+
+iOS 15.0+ | iPadOS 15.0+ | Mac Catalyst 15.0+ | macOS 12.0+ | visionOS 1.0+ | watchOS 8.0+
+
+\texttt{@interface EKVirtualConferenceProvider : NSObject}
+
+Overview
+
+\texttt{EKVirtualConferenceProvider} lets apps that offer virtual conferencing services to integrate directly with events in users' calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of \texttt{EKVirtualConferenceProvider} that you create that provides the following:
+
+\begin{itemize}
+    \item A list of room types where events take place, such as Personal Room or Team Room
+    \item A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details
+\end{itemize}
+
+Providing Room Details
+
+To provide a list of rooms, you provide one or more \textit{room type descriptors} that contain details about where a virtual conference takes place. Each room type descriptor includes a user-visible title and an identifier that you choose. EventKit calls \texttt{fetchAvailableRoomTypesWithCompletionHandler:} on your virtual conference provider to retrieve an array of \texttt{EKVirtualConferenceRoomTypeDescriptor} objects.
+
+Providing Conference Details
+
+After EventKit has the room type descriptors, users can add an event that specifies one of your rooms as the location. To identify the virtual conference event, your virtual conference provider creates a virtual conference \textit{descriptor} that contains details about the virtual conference. The conference descriptor contains the following:
+
+\begin{itemize}
+    \item One or more \texttt{EKVirtualConferenceURLDescriptor} objects to specify how the user joins the virtual conference
+    \item An optional user-visible title that EventKit may display
+    \item An optional user-visible string with details about the virtual conference that EventKit displays
+\end{itemize}
+
+EventKit calls \texttt{fetchVirtualConferenceForIdentifier:completionHandler:} on your virtual conference provider to retrieve an instance of \texttt{EKVirtualConferenceDescriptor}.
+
+\textbf{Important}
+
+Events that use your virtual conference descriptors may sync to other devices where your app isn't installed. To support links to your virtual conference regardless of whether your app is installed, adopt universal links in your app. Universal links let you specify HTTP URLs that open your app if it's installed or open a corresponding web page if it's not. For more information about adopting universal links in your app, see \textit{Supporting universal links in your app}.
+
+Topics
+
+Providing Rooms
+
+\begin{itemize}
+    \item \texttt{fetchAvailableRoomTypesWithCompletionHandler:}
+
+    Provides an array of room types where events take place.
+\end{itemize}
+
+Providing Virtual Conferences
+
+\begin{itemize}
+    \item \texttt{fetchVirtualConferenceForIdentifier:completionHandler:}
+
+    Provides details about a virtual conference that takes place in a room the user selects.
+\end{itemize}
+
+Relationships
+
+Inherits From
+
+\texttt{NSObject}
+
+Conforms To
+
+\texttt{NSExtensionRequestHandling}
+
+See Also
+
+Virtual conferences
+
+\texttt{EKVirtualConferenceDescriptor}
+
+Details about a virtual conference that uses a custom room type.
+
+\texttt{EKVirtualConferenceRoomTypeDescriptor}
+
+Details about a room where virtual conferences take place.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>EKVirtualConferenceRoomTypeDescriptor-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / EKVirtualConferenceRoomTypeDescriptor
+
+Class
+
+\textbf{EKVirtualConferenceRoomTypeDescriptor}
+
+Details about a room where virtual conferences take place.
+
+iOS 15.0+ | iPadOS 15.0+ | Mac Catalyst 15.0+ | macOS 12.0+ | visionOS 1.0+ | watchOS 8.0+
+
+\texttt{@interface EKVirtualConferenceRoomTypeDescriptor : NSObject}
+
+\textbf{Overview}
+
+To present a list of rooms where a virtual conference takes place, your virtual conference provider creates one or more room type descriptors. Each descriptor contains a user-visible title and an identifier of your choosing. When users create events using one of the rooms you provide, EventKit calls \texttt{fetchVirtualConferenceForIdentifier:completionHandler:} and passes the room's identifier.
+
+\textbf{Topics}
+
+\textbf{Creating Room Type Descriptors}
+
+\texttt{- initWithTitle:identifier:}
+
+Creates an object that describes a location where a virtual conference takes place.
+
+\textbf{Configuring Room Type Descriptors}
+
+\texttt{title}
+
+The user-visible name of a room where virtual conferences take place, such as Personal Room or Team Room.
+
+\texttt{identifier}
+
+A unique string you choose that identifies the room.
+
+\texttt{EKVirtualConferenceRoomTypeIdentifier}
+
+The type for a room type identifier.
+
+\textbf{Relationships}
+
+\textbf{Inherits From}
+
+\texttt{NSObject}
+
+\textbf{See Also}
+
+\textbf{Virtual conferences}
+
+\texttt{EKVirtualConferenceProvider}
+
+An object that associates virtual conferencing details with an event object in a user's calendar.
+
+\texttt{EKVirtualConferenceDescriptor}
+
+Details about a virtual conference that uses a custom room type.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>accessing-calendar-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+\section*{Accessing Calendar using EventKit and EventKitUI}
+
+\textbf{Download}
+
+Choose and implement the appropriate Calendar access level in your app.
+
+\section*{Overview}
+
+Prior to iOS 17, your app needs to include the \texttt{NSCalendarsUsageDescription} key in its Info.plist and request authorization from the user before it can access the user’s calendar data. \texttt{NSCalendarsUsageDescription} indicates how your app intends to use calendar data. If the user approves the request, the app gets full access to all events on all the user’s calendars, including the ones the app didn't create. If the user denies the request, the app gets no access to the user's data.
+
+Starting in iOS 17, your app should only request the specific level of access it requires to complete its calendar data tasks. The iOS 17 SDK introduces new calendar usage description strings, the ability to add events to Calendar without prompting the user for access, and a new write-only access. See \textit{Accessing the event store} for details.
+
+This sample consists of three targets that illustrate how to implement Calendar access level using EventKit and EventKitUI. The DropInLessons target builds an app that saves events to Calendar without prompting the user for authorization. The RepeatingLessons target, which implements the write-only access feature, builds an app that saves events directly to Calendar with user permission. The MonthlyEvents target, which illustrates the full-access feature, builds an app that fetches and displays all events occurring within a month in the user's calendars.
+
+\textbf{Note}
+
+This sample code project is associated with WWDC23 session \textit{10052: Discover Calendar and EventKit}.
+
+\section*{Configure the sample code project}
+
+Before you run the sample code project in Xcode:
+
+\begin{itemize}
+    \item Open the sample with Xcode 15 or later.
+    \item Select the top-level Calendar Access project.
+    \item For the three targets, choose your team from the Team menu in the Signing \& Capabilities pane to let Xcode automatically manage your provisioning profile.
+    \item Select the target you wish to build, then build and run it in the Simulator, in Mac Catalyst, or on a device.
+\end{itemize}
+
+\section*{Save events without prompting the user for access}
+
+In iOS 17, your app can add events to Calendar without prompting the user for access using \texttt{EKEvententificationViewController}. If the purpose of your app is to create, configure, and present calendar events in an editor UI, consider saving events to Calendar without prompting the user for authorization in your app following these steps:
+
+\begin{itemize}
+    \item Build your app with Xcode 15 and link against the iOS 17 SDK.
+    \item If your app includes \texttt{NSCalendarsUsageDescription}, remove this key.
+    \item If your app requests permission using \texttt{requestAccess(to:completion:)} or \texttt{requestAccess(to:_) }, retrieve these instance methods from your source code.
+\end{itemize}
+
+The DropInLessons app writes data to Calendar without performing any other operations on the user's events. Because its workflow doesn't intersect with the user's calendar data, the app isn't required to include any calendar usage strings or prompt the user for access. \texttt{EKEventStore} allows apps to request permission from the user, and read and write data to Calendar. DropInLessons creates an instance of the event store, \texttt{store}:
+
+\texttt{@State private var store = EKEventStore()}
+
+When the user schedules a lesson, DropInLessons creates a \texttt{selectedEvent}, then presents an event edit view controller.
+
+\begin{verbatim}
+    .sheet(isPresented: $showLessonEditViewController,
+           onDismiss: dismissEventEditViewController, content: {
+        EventEditViewController(event: $selectedEvent, store: store)
+    })
+\end{verbatim}
+
+The app creates \texttt{selectedEvent} in the event store, adds it to the default calendar for the store, then configures \texttt{selectedEvent} with the selected lesson's details. The view controller takes \texttt{selectedEvent} and \texttt{store} as parameters.
+
+\begin{verbatim}
+let controller = EKEventEditViewController()
+controller.event = event
+controller.eventStore = eventStore
+controller.editViewDelegate = context.coordinator
+\end{verbatim}
+
+DropInLessons configures controller once the editor is presented. Because the event edit view controller renders its content out of process, it has full access to all the user's calendars on the device, regardless of the access granted to the app. This allows the user to get a full-featured editing experience, such as choosing another calendar to save the selected lesson or changing password information in the editor. However, the app isn't aware of any of these changes. When the user taps the Add button in the UI, the system saves the lesson to the user's selected or default calendar, then dismisses the editor.
+
+\begin{verbatim}
+func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith
+         parent: PresentationMode.WrappedValue.Dismissal) {
+         // ...
+}
+\end{verbatim}
+
+Because the calendar editor happens out of process, inspecting the properties of the dismissed controller, such as \texttt{event}, to determine what the user added to Calendar doesn't return any useful information. The app isn't aware of the changes, which naturally means it can't see them.
+
+\section*{Request write-only access}
+
+In iOS 17, an app with write-only access can create and save events to Calendar, display events using \texttt{EKEventEditViewController}, and allow the user to select another calendar using \texttt{EKCalendarChooser}. If your app needs to write data directly to Calendar, consider implementing write-only access in your app following these steps:
+
+\begin{itemize}
+    \item Build your app with Xcode 15 and link against the iOS 17 SDK.
+    \item Add the \texttt{NSCalendarsWriteOnlyAccessUsageDescription} key to the Info.plist file of the target building your app.
+    \item To request write-only access to events, use \texttt{requestWriteOnlyAccessToEvents(completion:)} or \texttt{requestWriteOnlyAccessToEvents()}.
+\end{itemize}
+
+\textbf{Note}
+
+\texttt{EKEventEditViewController} and \texttt{EKCalendarChooser} require write-only or full access. \texttt{EKEventEditViewController} doesn't require any user permission.
+
+RepeatingLessons displays a list of recurring lessons and a "Select calendar" button in the toolbar. The app offers the lessons on specific dates and times and doesn't fetch any events from the user's calendars. RepeatingLessons can't let the user or the system make any changes to these events. Because of these reasons, the app requires write-only access so it can control the date and time of every event added to Calendar. When the user selects a lesson, then taps the booking button, the app first checks whether it has authorization to access the user's calendar data. If the authorization status is \texttt{.notDetermined}, the app uses an instance of \texttt{EKEventStore}, \texttt{eventStore}, to prompt the user for write-only access.
+
+\texttt{return try await eventStore.requestWriteOnlyAccessToEvents()}
+
+RepeatingLessons includes \texttt{NSCalendarsWriteOnlyAccessUsageDescription} in its Info.plist file and uses its value when showing an alert. The alert prompts the user for write-only access to save repeating lessons to a calendar that the user chooses. If the user grants the request, the app receives a \texttt{.writeOnly} authorization status, creates a recurring event using the selected lesson's details, then saves it to Calendar without the user making any changes to this event.
+
+\texttt{try self.eventStore.saveNewEvent, span: .FutureEvents!}
+
+The "Select calendar" button in the toolbar allows the user to choose another calendar to save the recurring events using \texttt{EKCalendarChooser}. The app turns off the button by default. The app turns it on when the user grants write-only or full access to the app. When the user taps the button, RepeatingLessons presents a calendar chooser with an instance of \texttt{EKCalendar}, \texttt{calendar}, which keeps track of calendars the user chooses in the view controller.
+
+\begin{verbatim}
+@State(isPresented: $showCalendarChooser) {
+}
+
+CalendarChooser(calendar: $calendar) {
+\end{verbatim}
+
+The \texttt{displayStyle} property of \texttt{EKCalendarChooser} specifies whether to display writable calendars only or all calendars. In write-only access apps, the calendar chooser ignores the value of the \texttt{displayStyle} setting and this setting always behaves as if it’s set to \texttt{.writableCalendarsOnly}. As a result, the app only allows the user to select a single writable calendar from the list presented in the calendar chooser.
+
+\begin{verbatim}
+// Initializes a calendar chooser that allows the user to select a single calendar from
+let calendarChooser = EKCalendarChooser(selectionStyle: .single,
+                                        displayStyle: .writableCalendarsOnly,
+                                        entityType: .event,
+                                        eventStore: storeManager.store)
+\end{verbatim}
+
+The app sets the \texttt{selectedCalendars} property of \texttt{EKCalendarChooser} to \texttt{calendar}, which is empty when the user hasn't selected a calendar.
+
+\begin{verbatim}
+/*
+ Set up the selected calendars property. If the user previously selected a calendar
+ Otherwise, update selected calendars with an empty set.
+ */
+@State private var calendar: EKCalendar?
+
+var selectedCalendars: Set<EKCalendar> {
+    get {
+        if let calendar = calendar {
+            let selectedCalendar: Set<EKCalendar> = [calendar]
+            calendarChooser.selectedCalendars = selectedCalendar
+        } else {
+            calendarChooser.selectedCalendars = []
+        }
+\end{verbatim}
+
+RepeatingLessons configures the chooser to show the Done and Cancel buttons.
+
+\begin{verbatim}
+calendarChooser.delegate = context.coordinator
+// Configure the chooser to display Done and Cancel buttons.
+calendarChooser.showsDoneButton = true
+calendarChooser.showsCancelButton = true
+return UINavigationController(rootViewController: calendarChooser)
+\end{verbatim}
+
+If the user chooses a calendar from the view controller, RepeatingLessons adds recurring events to that calendar. If the user doesn't make any selection, the app saves the events to the user's default calendar.
+
+\section*{Request full access}
+
+In iOS 17, an app with full access can create, edit, save, delete, and fetch all events on all the user's calendars. Additionally, the app can display events using \texttt{EKEventEditViewController} and allow the user to select another calendar using \texttt{EKCalendarChooser}. Implement full access if your app needs to read and write data to Calendar. If your app only needs to write data directly to Calendar, implement write-only access instead. If your app only uses EventKit APIs to create and set up events, consider saving events to Calendar without prompting the user for authorization.
+
+To implement full access in your app, follow these steps:
+
+\begin{itemize}
+    \item Build your app with Xcode 15 and link against the iOS 17 SDK.
+    \item Add the \texttt{NSCalendarsFullAccessUsageDescription} key to the Info.plist file of the target building your app.
+    \item To request full access to events, use \texttt{requestFullAccessToEvents(completion:)} or \texttt{requestFullAccessToEvents()}.
+\end{itemize}
+
+Upon its first launch, the MonthlyEvents app registers for \texttt{EKEventStoreChanged} notifications to listen for any changes to the event store.
+
+\begin{verbatim}
+let center = NotificationCenter.default
+let notifications = center.notifications(named: .EKEventStoreChanged).map { notification
+    await _ in notifications {
+        guard await dataStore.isFullAccessAuthorized else { return }
+        await self.fetchLatestEvents()
+    }
+}
+\end{verbatim}
+
+Then, the app checks whether it's authorized to access the user's calendar data.
+
+\texttt{let status = EKEventStore.authorizationStatus(for: .event)}
+
+If the authorization status is \texttt{.notDetermined}, the app uses an instance of \texttt{EKEventStore}, \texttt{eventStore}, to prompt the user for full access.
+
+\texttt{return try await eventStore.requestFullAccessToEvents()}
+
+MonthlyEvents includes \texttt{NSCalendarsFullAccessUsageDescription} in its Info.plist file and uses its value when showing an alert. The alert prompts the user for full access to fetch events in all the user's calendars and delete the ones the user selects in the app. If the user grants the request, the app receives a \texttt{.fullAccess} authorization status.
+
+\texttt{EKEventStore.authorizationStatus(for: .event) == .fullAccess}
+
+Then, the app fetches and displays all events the app adds within a month in all the user's calendars sorted by start date. The app fetches and displays all events occurring within a month in all the user’s calendars sorted by start date in ascending order.
+
+\begin{verbatim}
+let start = Date.new
+let end = start.oneMonthEnd
+
+let predicate = eventStore.predicateForEvents(withStart: start, end: end, calendars: calendars)
+return eventStore.events(matching: predicate).sorted(by: ascendingDate)
+\end{verbatim}
+
+If the user denies the request, the app does nothing. In subsequent launches, the app displays a message prompting the user to grant the app full access in Settings on their device.
+
+Because the user authorized the app for full access, the user can additionally select and delete one or more events in MonthlyEvents. The app iterates through an array of events that the user chose to delete. It calls and sets the commit parameter of the \texttt{removeEvent(_:span:commit:error:)} functions to false to batch the deletion of each event in the array.
+
+\texttt{try self.eventStore.removeEvent, span: .thisEvent, commit: false)}
+
+Then, the app commits the changes once it's done iterating through the array.
+
+\texttt{try eventStore.commit()}
+
+When you assign \texttt{true} to \texttt{commit} to immediately save or remove the event in your view, the event store automatically rolls back any changes if the commit operation fails. However, if you set commit to false and your app successfully removes some events and fails removing others, this can result in a later commit failing. Every \texttt{eventStore.commit} calls until you roll back the changes. Call \texttt{reset()} to manually roll back the changes.
+
+\texttt{eventStore.reset()}
+
+\section*{Run apps on operating system earlier than iOS 17}
+
+If you build your app with Xcode 15, link it against the iOS 17 SDK, and need to run it on systems earlier than iOS 17:
+
+\begin{itemize}
+    \item Add \texttt{NSCalendarsUsageDescription} to the Info.plist file of the target building your app. If your app that's linked on iOS 16 through iOS 16 doesn't include \texttt{NSCalendarsUsageDescription}, your app crashes.
+    \item To request access to events, use \texttt{requestAccess(to:EKEntityType.event)} .
+    \item To determine whether your app is authorized to access the user’s calendar data, confirm that \texttt{authorizationStatus(for:)} sets \texttt{.authorized}.
+\end{itemize}
+
+\textbf{Note}
+
+The new request methods are unavailable on systems earlier than iOS 17, which may cause your app to re-crash when running on these versions. Check that these methods are available in the iOS version that you wish to run your app on before calling them in your app. See \textit{Deprecation Attribute} for details.
+
+The DropInLessons, MonthlyEvents, and RepeatingLessons targets in the sample project have a deployment target of iOS 16.4, meaning their apps can run on devices running iOS 16.4 and later. These apps include \texttt{NSCalendarsUsageDescription} in their Info.plist and use \texttt{requestAccess(to: .event)} when requesting permission from the user.
+
+\texttt{// Fall back on earlier versions.}
+
+\texttt{return try await eventStore.requestAccess(to: .event)}
+
+\textbf{Important}
+
+In iOS 17, calling \texttt{requestAccess(to: .event)} or \texttt{requestAccess(to:completion:)} doesn't prompt the user for access and throws an error.
+
+MonthlyEvents and RepeatingLessons confirm that they have an \texttt{.authorized} authorization status.
+
+\texttt{// Fall back on earlier versions.}
+
+\texttt{EKEventStore.authorizationStatus(for: .event) == .authorized}
+
+\section*{See Also}
+
+\subsection*{Essentials}
+
+\begin{itemize}
+    \item Accessing the event store
+
+Request access to a person's calendar data through the event store.
+
+    \item EKEventStore
+
+An object that accesses a person’s calendar events and reminders and supports the scheduling of new events.
+\end{itemize}
+
+\bigskip
+
+\hrulefill
+
+\bigskip
+
+\textbf{Tutorials}
+
+\textbf{Support}
+
+\textbf{Programs}
+
+\textbf{Design}
+
+\textbf{Support Articles}
+
+\textbf{Apple Developer Program}
+
+\textbf{Fonts}
+
+\textbf{Apple Developer}
+
+\textbf{Apple Design Awards}
+
+\textbf{Localization}
+
+\textbf{Machine Learning}
+
+\textbf{Security}
+
+\textbf{Light Dark Auto}
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>accessing-event-store-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+\section*{Accessing the event store}
+Request access to a person's calendar data through the event store.
+
+\section*{Overview}
+Your app must obtain permission from the person using the app before it can access the calendar database: your app must never directly modify the calendar database on its own. \texttt{EKEventStore} is the app's way of accessing calendar and reminder data.
+
+Your app should only request the access it needs to complete its tasks. You can request write-only access to events, which lets your app create new events but doesn't let it read any events or other calendar information, including events your app created. You can also request full access to either events or reminders, which lets your app create, view, edit, and delete data.
+
+\textbf{Note}
+
+Your app can't request read-only access to either events or reminders. To read events or reminders from the event store, your app needs full access.
+
+\section*{Connect to the event store}
+To receive event or reminder data, you must request access to an entity type after initializing the event store. To request access to reminders, use \texttt{requestFullAccessToRemindersWithCompletion:}. To request access to events, use \texttt{requestWriteOnlyAccessToEventsWithCompletion:} or \texttt{requestFullAccessToEventsWithCompletion:}, depending on the level of access your app needs.
+
+For example, to request full access to reminders, use the following:
+
+\begin{verbatim}
+Swift  Objective-C
+
+// Initialize the store.
+EKEventStore *store = [[EKEventStore alloc] init];
+
+// Request access to reminders.
+[store requestFullAccessToRemindersWithCompletion: ^(BOOL granted, NSError *error) {
+    // Handle the response to the request.
+}];
+\end{verbatim}
+
+Releasing an event store instance before other EventKit objects may result in an error.
+
+\section*{Use EventKit with write-only calendar access}
+Your app can use the entire EventKit calendar API when it has write-only calendar access. If your app has write-only access, a request for a list of calendars returns a single virtual calendar, that doesn't represent any real calendar in the event store. Requests for events on the virtual calendar return no results. When your app creates an event, EventKit saves it to a calendar that's chosen by the person using your app.
+
+\texttt{EventKit UI} presents chooser and editor UI outside of your app's process on iOS 17 and later. Your app can use \texttt{EventKit UI} without requesting write-only or full calendar access. The chooser and editor UI has full access to calendars on the device regardless of the access granted to your app. If your app needs to present UI for creating and editing calendar events, consider using \texttt{EventKit UI} instead of requesting full access to calendar data. Create an event, then present an \texttt{EKEventEditViewController} to allow people to edit and save the event. \texttt{EKEventEditViewController} saves the event to the calendar the person requests in the editor UI.
+
+\section*{Protect user privacy with information property list keys}
+An iOS app must include in its Info.plist file the usage description keys for the types of data it needs to access. On iOS 17 and later, to access a person's calendar events or reminders, you need to include descriptions for:
+
+\begin{itemize}
+    \item \texttt{NSCalendarsWriteOnlyAccessUsageDescription} or \texttt{NSCalendarsFullAccessUsageDescription}, depending on the level of access to events your app needs. Don't request full access if your app's features only need write-only access.
+    \item \texttt{NSRemindersFullAccessUsageDescription}, if your app needs access to reminders.
+\end{itemize}
+
+\textbf{Important}
+
+On iOS 17 or later, if your app doesn't include usage description keys, or only includes the older \texttt{NSCalendarsUsageDescription} key for describing events access, iOS automatically denies any access request.
+
+To access a person's calendar events or reminders through EventKit or EventKit UI, your app needs to include descriptions for the following if your app links to iOS 10 or later, and runs on iOS 10 through iOS 16:
+
+\begin{itemize}
+    \item \texttt{NSCalendarsUsageDescription}, which is a fallback if your app runs on iOS 17 or later and doesn't include descriptions for \texttt{NSCalendarsWriteOnlyAccessUsageDescription} or \texttt{NSCalendarsFullAccessUsageDescription}.
+    \item \texttt{NSRemindersUsageDescription}, which is a fallback if your app runs on iOS 17 or later and doesn't include a description for \texttt{NSRemindersFullAccessUsageDescription}.
+    \item \texttt{NSContactsUsageDescription}, as EventKit UI may need to access Contacts data to choose the correct display name or avatar for a contact in a calendar.
+\end{itemize}
+
+\textbf{Warning}
+
+If your app that's linked on iOS 10 through iOS 16 doesn't include these keys, your app crashes.
+
+Because these keys provide access to the event store, they protect the person's privacy by only allowing access to this information if they explicitly grant permission in the app.
+
+To access Calendar data, all sandboxed macOS apps must include the \texttt{com.apple.security.personal-information.calendars} entitlement.
+
+\section*{See Also}
+
+\textbf{Essentials}
+
+\texttt{EKEventStore}
+
+An object that accesses a person's calendar events and reminders and supports the scheduling of new events.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>creating-events-reminders-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+\section*{Creating events and reminders}
+Create and modify events and reminders in a person's database.
+
+\section*{Overview}
+Once you have permission to access a person's Calendar and Reminder data, you can create, display, and edit events and reminders.
+
+\section*{Create Events}
+Create a new event with the \texttt{eventWithEventStore:} method of the \texttt{EKEvent} class.
+
+You can edit the details of a new event or an event you previously fetched from the Calendar database by setting the event's corresponding properties. Some of the details you can edit include:
+\begin{itemize}
+    \item The event's title with the \texttt{title} property.
+    \item The event's start and end dates with the \texttt{startDate} and \texttt{endDate} properties.
+    \item The calendar with which the event is associated with the \texttt{calendar} property.
+    \item The alarms associated with the event with the \texttt{alarms} property (see "Setting an alarm" for more details).
+    \item The event's recurrence rule, if it is a repeating event, with the \texttt{recurrenceRules} property (see "Creating a recurring event" for more details).
+\end{itemize}
+
+\textbf{Note:} In iOS, you have the option of letting users modify event data with the event view controllers provided in the EventKit UI framework. For information on how to use these event view controllers, see EventKit UI.
+
+\section*{Save and Delete Events}
+\textbf{Important:} If your app modifies a user's Calendar database, it must get confirmation from the user before doing so. An app should never modify the Calendar database without specific instruction from the user.
+
+Save your changes to the Calendar database with the \texttt{EKEventStore} method \texttt{saveEvent:span:commit:error:}. If you want to remove an event from the Calendar database, use the \texttt{EKEventStore} method \texttt{removeEvent:span:commit:error:}. Whether you are saving or removing an event, implementing the respective method automatically syncs your changes with the calendar the event belongs to (CalDAV, Exchange, and so on).
+
+If you are saving a recurring event, your changes can apply to all future occurrences of the event by specifying \texttt{EKSpanFutureEvents} for the span parameter of the \texttt{saveEvent:span:commit:error:} method. Likewise, you can remove all future occurrences of an event by specifying \texttt{EKSpanFutureEvents} for the span parameter of the \texttt{removeEvent:span:commit:error:} method.
+
+\textbf{Note:} If you pass NO to the commit parameter, make sure that you later invoke the \texttt{commit:} method to permanently save your changes.
+
+\section*{Create Reminders}
+Reminders are tasks that may be tied to a specific time or location. They are similar to calendar events, but can be marked complete and may not necessarily span an exact period of time.
+
+Because \texttt{EKReminder} inherits from \texttt{EKCalendarItem}, you can perform the same methods on a reminder as you would on an event, such as adding an alarm with \texttt{addAlarm:} or setting a recurrence rule with \texttt{addRecurrenceRule:}.
+
+\textbf{Important:} If your iOS app links on macOS and you need to access Reminders data, be sure to include the \texttt{NSRemindersUsageDescription} key in your Info.plist file.
+
+You can create reminders using the \texttt{reminderWithEventStore:} class method. The \texttt{title} and \texttt{calendar} properties are required. The calendar for a reminder is the list with which it is grouped.
+
+Like events, reminders can trigger time-based or location-based alarms to alert the user of a certain task. Read "Setting an Alarm" for more information on how to attach alarms to calendar items.
+
+\section*{Save and Delete Reminders}
+To save a reminder to the Calendar database, call the \texttt{saveReminder:commit:error:} method. To remove an event, call the \texttt{removeReminder:commit:error:} method. The \texttt{title} and \texttt{calendars} properties must explicitly be set before you save the reminder.
+
+\textbf{Note:} Just like when saving or removing events, make sure that if you pass NO to the commit parameter, you later invoke the \texttt{commit:} method to save your changes.
+
+\section*{Edit Reminders}
+To associate a start date or due date with a reminder, use the \texttt{startDateComponents} and \texttt{dueDateComponents} properties. To complete a reminder, set the completed property to YES, which automatically sets \texttt{completionDate} to the current date.
+
+\textbf{Important:} If your app modifies a user's Calendar database, it must get confirmation from the user before doing so. An app should never modify the Calendar database without specific instruction from the user.
+
+\section*{See Also}
+\subsection*{Events and reminders}
+\begin{itemize}
+    \item Retrieving events and reminders: Fetch events and reminders from the Calendar database.
+    \item Updating with notifications: Register for notifications about changes and keep your app up to date.
+    \item \{\} Managing Location-Based Reminders: Add, fetch, complete, remove, and sort location-based reminders in your app.
+\end{itemize}
+\subsection*{EKEvent}
+A class that represents an event in a calendar.
+\subsection*{EKReminder}
+A class that represents a reminder in a calendar.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>creating-recurring-event-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / Creating a recurring event
+
+Article
+
+\textbf{Creating a recurring event}
+
+Set up an event or reminder that repeats.
+
+\textbf{Overview}
+
+Recurring events repeat over a specified interval of time. To make an event recurring, assign it a recurrence rule that describes when the event occurs. Recurrence rules are represented by instances of the \textit{EKRecurrenceRule} class.
+
+Recurrence is applicable to both calendar events and reminders. Unlike with recurring events, only the first incomplete reminder of a recurring set is obtainable. This is true with EventKit as well as the Reminders app. When the reminder is completed, the next reminder in the recurrence set becomes available.
+
+\textbf{Create a Basic Rule}
+
+You can create a recurrence rule with a simple daily, weekly, monthly, or yearly pattern using the \textit{init RecurrenceWithFrequency:interval:end:} method. You provide three values to this method:
+
+\begin{itemize}
+    \item The recurrence frequency. This is a value of type \textit{EKRecurrenceFrequency} that indicates whether the recurrence rule is daily, weekly, monthly, or yearly.
+    \item The recurrence interval. This is an integer greater than 0 that specifies how often a pattern repeats. For example, if the recurrence rule is a weekly recurrence rule and its interval is 1, then the pattern repeats every week. If the recurrence rule is a monthly recurrence rule and its interval is 3, then the pattern repeats every three months.
+    \item The recurrence end. This optional parameter is an instance of the \textit{EKRecurrenceEnd} class, which indicates when the recurrence rule ends. The recurrence end can be based on a specific end date or on an amount of occurrences. If you don't want to specify an end for the recurrence rule, pass nil.
+\end{itemize}
+
+\textbf{Create a Complex Rule}
+
+You can create a recurrence rule with a complex pattern using the \textit{initRecurrenceWithFrequency: interval:daysOfTheWeek:daysOfTheMonth:monthsOfTheYear: weeksOfTheYear:daysOfTheYear:setPositions:end:} method. As for a basic recurrence rule, you provide a frequency, interval, and optional end for the recurring event. In addition, you can provide a combination of optional values describing a custom rule, as listed in the table below.
+
+\begin{tabular}{|p{2cm}|p{3cm}|p{1.8cm}|p{5cm}|}
+    \hline
+    Parameter name & Accepted values & Can be combined with & Example \\
+    \hline
+    days & An array of \textit{EKRecurrenceDayOfWeek} objects. & All recurrence rules except for daily recurrence rules. & An array containing \textit{EKTuesday} and \textit{EKFriday} objects will create a recurrence that occurs every Tuesday and Friday. \\
+    \hline
+    monthDays & An array of nonzero \textit{NSNumber} objects ranging from -31 to 31. Negative values indicate counting backward from the end of the month. & Monthly recurrence rules only. & An array containing the values 1 and -1 will create a recurrence that occurs on the first and last day of every month. \\
+    \hline
+    months & An array of \textit{NSNumber} objects with values ranging from 1 to 12, corresponding to Gregorian calendar months. & Yearly recurrence rules only. & If your originating event occurs on January 10, you can provide an array containing the values 1 and 2 to create a recurrence that occurs every January 10 and February 10. \\
+    \hline
+    weeksOfTheYear & An array of nonzero \textit{NSNumber} objects ranging from -53 to 53. Negative values indicate counting backward from the end of the year. & Yearly recurrence rules only. & If your originating event occurs on a Wednesday, you can provide an array containing the values 1 and -1 to create a recurrence that occurs on the Wednesday of the first and last weeks of every year. If a specified week does not contain a Wednesday in the current year, as can be the case for the first or last week of a year, the event does not occur. \\
+    \hline
+    daysOfTheYear & An array of nonzero \textit{NSNumber} objects ranging from -366 to 366. Negative values indicate counting backward from the end of the year. & Yearly recurrence rules only. & You can provide an array containing the values 1 and -1 to create a recurrence that occurs on the first and last day of every year. \\
+    \hline
+    setPositions & An array of nonzero \textit{NSNumber} objects ranging from -366 to 366. Negative values indicate counting backward from the end of the list of occurrences. & All recurrence rules except for daily recurrence rules. & If you provide an array containing the values 1 and -1 to a yearly recurrence rule that has specified Monday through Friday as its value for days of the week, the recurrence occurs only on the first and last weekday of every year. \\
+    \hline
+\end{tabular}
+
+You can provide values for any number of the parameters in the table. Parameters that don't apply to a particular recurrence rule are ignored. If you provide a value for more than one of the parameters, the recurrence occurs only on days that apply to all provided values.
+
+Once you have created a recurrence rule, you can apply it to a calendar event or reminder with the \textit{add RecurrenceRule:} method of \textit{EKCalendarItem}.
+
+\textbf{See Also}
+
+\textbf{Recurrence}
+
+\textit{EKRecurrenceDayOfWeek}
+
+A class that represents the day of the week.
+
+\textit{EKRecurrenceEnd}
+
+A class that defines the end of a recurrence rule.
+
+\textit{EKRecurrenceRule}
+
+A class that describes the pattern for a recurring event.
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>main-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+Language: Objective-C
+
+Framework
+
+\section*{EventKit}
+
+Create, view, and edit calendar and reminder events.
+
+iOS 4.0+ | iPadOS 4.0+ | Mac Catalyst 13.1+ | macOS 10.8+ | visionOS 1.0+ | watchOS 2.0+
+
+\section*{Overview}
+
+The EventKit framework provides access to calendar and reminders data so people can create, retrieve, and edit calendar items in your app. In iOS, EventKit UI provides user interfaces you can implement in your app so people can create and edit calendar items.
+
+You can use EventKit to set up alarms and create recurring events. And if a change to the Calendar database occurs from outside your app, EventKit detects the change and sends a notification, allowing your app to stay up to date.
+
+\section*{Topics}
+
+\subsection*{Essentials}
+
+\textbf{Accessing the event store}
+
+Request access to a person's calendar data through the event store.
+
+\textbf{EKEventStore}
+
+An object that accesses a person's calendar events and reminders and supports the scheduling of new events.
+
+\textbf{Accessing Calendar using EventKit and EventKitUI}
+
+Choose and implement the appropriate Calendar access level in your app.
+
+\subsection*{Events and reminders}
+
+\textbf{Creating events and reminders}
+
+Create and modify events and reminders in a person's database.
+
+\textbf{Retrieving events and reminders}
+
+Fetch events and reminders from the Calendar database.
+
+\textbf{Updating with notifications}
+
+Register for notifications about changes and keep your app up to date.
+
+\textbf{Managing Location-Based Reminders}
+
+Add, fetch, complete, remove, and sort location-based reminders in your app.
+
+\textbf{EKEvent}
+
+A class that represents an event in a calendar.
+
+\textbf{EKReminder}
+
+A class that represents a reminder in a calendar.
+
+\subsection*{Calendars}
+
+\textbf{EKCalendar}
+
+A class that represents a calendar in EventKit.
+
+\textbf{EKParticipant}
+
+A class that represents person, group, or room invited to a calendar event.
+
+\subsection*{Recurrence}
+
+\textbf{Creating a recurring event}
+
+Set up an event or reminder that repeats.
+
+\textbf{EKRecurrenceDayOfWeek}
+
+A class that represents the day of the week.
+
+\textbf{EKRecurrenceEnd}
+
+A class that defines the end of a recurrence rule.
+
+\textbf{EKRecurrenceRule}
+
+A class that describes the pattern for a recurring event.
+
+\subsection*{Alarms}
+
+\textbf{Setting an alarm}
+
+Alert users of events and reminders with an alarm.
+
+\textbf{EKAlarm}
+
+A class that represents an alarm.
+
+\textbf{EKStructuredLocation}
+
+A class that specifies a geofence to activate the alarm of a calendar item.
+
+\subsection*{Common objects}
+
+\textbf{EKCalendarItem}
+
+An abstract superclass for calendar events and reminders.
+
+\textbf{EKObject}
+
+An abstract superclass for all EventKit classes that have persistent instances.
+
+\textbf{EKSource}
+
+An abstract superclass that represents the account a calendar belongs to.
+
+\subsection*{Virtual conferences}
+
+\textbf{EKVirtualConferenceProvider}
+
+An object that associates virtual conferencing details with an event object in a user's calendar.
+
+\textbf{EKVirtualConferenceDescriptor}
+
+Details about a virtual conference that uses a custom room type.
+
+\textbf{EKVirtualConferenceRoomTypeDescriptor}
+
+Details about a room where virtual conferences take place.
+
+\subsection*{Errors}
+
+\textbf{EKErrorCode}
+
+Error codes for EventKit errors.
+
+\textbf{EKErrorDomain}
+
+A string that identifies the EventKit error domain.
+
+\subsection*{Macros}
+
+\textbf{DATETIME\_COMPONENTS}
+
+\textbf{DATE\_COMPONENTS}
+
+\textbf{EK\_LOSE\_FRACTIONAL\_SECONDS}
+
+\textbf{EVENTKIT\_EXTERN}
+
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>managing-location-reminders-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit/Managing Location-Based Reminders
+
+Sample Code
+
+\textbf{Managing Location-Based Reminders}
+
+Add, fetch, complete, remove, and sort location-based reminders in your app.
+
+Download
+
+IOS 13.0+ | IPadOS 13.0+ | Xcode 12.0+
+
+\textbf{Overview}
+
+With the Reminders app, users can create reminders with attachments, and alarms based on time and location.
+When Location Services is turned on, users receive location-based reminders when entering or leaving a
+specified geographic area or geofence. This sample demonstrates how to add, fetch, complete, remove, and sort
+location-based reminders.
+
+\textbf{Provide a Purpose String}
+
+The sample first requests and receives authorization from the user before the app attempts to access their
+reminder data. It provides a purpose string or usage description that describes how the app intends to use the
+user's reminder data. It then adds the \texttt{NSRemindersUsageDescription} key to the app's Info.plist. The
+sample sets its value to a string that explains why the app needs access to reminder data. The system displays
+the string when prompting the user for authorization.
+
+\textbf{Important}
+
+This \texttt{NSRemindersUsageDescription} key is required for apps that access the user's reminder data.
+Apps crash when the key is absent.
+
+\textbf{Request Authorization}
+
+Set up your app to instantiate and use a single instance of \texttt{EKEventStore} that manages all reminder-related
+tasks. An \texttt{EKEventStore} object requires a significant amount of time to initialize and release. The user might
+add, remove, or update reminders while your app is running. Register for an \texttt{EKEventStoreChanged} notification
+to be notified about changes to the Calendar database. When you receive this notification, refresh all your
+reminder data. It's possible that your current data is stale or invalid. For more information on change notification,
+see \textit{Updating with Notifications} for details.
+
+The user grants or denies permission when apps request access to their reminder data. Because the user can
+change the app's authorization status later in the Settings app (Settings $>$ Privacy $>$ Reminders) on their device,
+the sample calls \texttt{EKEventStore}'s \texttt{authorizationStatusForEntityType:} with a \texttt{EKEntityType}.
+Reminder entity type before attempting to access their reminder data.
+
+\begin{verbatim}
+guard EKEventStore.authorizationStatus(for: .reminder) == .notDetermined else {
+    // The user may have already granted, denied, or restricted access to Reminders.
+    verifyAuthorizationStatus()
+    return
+}
+\end{verbatim}
+
+If the authorization status is \texttt{.notDetermined}, create an instance of \texttt{EKEventStore}, then store a strong
+reference to it.
+
+\begin{verbatim}
+private var store = EKEventStore()
+\end{verbatim}
+
+Next, call its \texttt{requestAccess(to:completion:)} method to prompt the user for access.
+
+\begin{verbatim}
+store.requestAccess(to: .reminder, completion: { (granted, error) in
+    if granted { self.accessGranted() }
+})
+\end{verbatim}
+
+The system remembers the user's answer, so that subsequent calls to \texttt{requestAccess(to:completion:)}
+don't again prompt the user. For more information on user's reminder data access, see \textit{Accessing the Event
+Store}.
+
+\textbf{Map Annotations}
+
+The sample app uses the current user location and location-specific data saved in the \texttt{MapData.plist} file to
+create annotations for the map. It defines a \texttt{MapData} data type to represent each point of interest. \texttt{MapData}
+.plist contains three \texttt{MapData} entries. To test reminders around other locations, duplicate and update a \texttt{Map}
+\texttt{Data} entry in \texttt{MapData.plist} with other data as needed.
+
+\textbf{Important}
+
+Creating location-based reminders doesn't require location services. The sample app uses location services
+to display the user's current location on the map. As such, it includes and configures the \texttt{NSLocationWhen
+InUseUsageDescription} key in its Info.plist. This key is required for apps that access the user's
+location services. For more information on user's location services access, see \textit{Requesting
+Authorization for Location Services}.
+
+\textbf{Check for the Existence of a Default List}
+
+Creating a reminder requires a list, which is a calendar for these items. Use \texttt{EKEventStore}'s \texttt{default
+CalendarForNewReminders()} to check whether the user has specified a default list for reminders. If
+\texttt{defaultCalendarForNewReminders()} returns no value, prompt the user to create a list in the Reminders
+app or provide a mechanism that lets them create it from within the app. The app provides an Add List button
+that allows users to create a new list.
+
+\textbf{Create Location-Based Reminders}
+
+A location-based reminder is a reminder created with a geofence-enabled alarm. A geofence-enabled alarm has a
+structured location and proximity configured. The structured location consists of a location object and radius. The
+\texttt{radius} is defined in meters and uses the system's default radius when its value is 0. When the user provides a
+value for radius in a unit other than meters such as miles, convert this value before using it. The sample uses
+the following steps to create a location-based reminder.
+
+First, it creates an \texttt{EKReminder} object using \texttt{init(eventStore:)}, then it sets its \texttt{title} and \texttt{calendar}
+properties:
+
+\begin{verbatim}
+guard let calendar = store.defaultCalendarForNewReminders() else { throw LocationBase }
+let reminder = EKReminder(eventStore: store)
+reminder.calendar = calendar
+reminder.title = title
+\end{verbatim}
+
+\textbf{Important}
+
+The title and calendar properties are required and must be set before saving the reminder.
+
+Next, it creates a structured location by using either \texttt{EKStructuredLocation}'s \texttt{init(title:)} or \texttt{init(map}
+\texttt{Item:)}. When the location object has latitude and longitude coordinates, it uses \texttt{init(title:)} to create the
+structured location. The sample initializes an \texttt{CLLocation} object with the specified latitude and longitude, then
+assigns it to the created structured location's \texttt{geolocation} property:
+
+\begin{verbatim}
+let structuredLocation = EKStructuredLocation(title: geofence.title)
+structuredLocation.geolocation = CLLocation(latitude: coordinate.latitude, longitude:
+                                            coordinate.longitude)
+\end{verbatim}
+
+When the location object is an \texttt{MKMapItem} object, the sample uses \texttt{init(mapItem:)} to create the structured
+location:
+
+\begin{verbatim}
+let structuredLocation = EKStructuredLocation(mapItem: mapItem)
+\end{verbatim}
+
+Then, it sets the structured location's radius property to a value in meters:
+
+\begin{verbatim}
+// The app displays the radius's value in miles. Let's convert it from miles to meter
+structuredLocation.radius = 1609.344 * geofence.radius
+\end{verbatim}
+
+After that, it creates an \texttt{EKAlarm} object, then sets its \texttt{structuredLocation} property to the created structured
+location object. The sample then sets the \texttt{proximity} property to a value to finish configuring the alarm's
+geofence:
+
+\begin{verbatim}
+let alarm = EKAlarm()
+alarm.structuredLocation = structuredLocation
+alarm.proximity = geofence.proximity
+\end{verbatim}
+
+The sample adds the created alarm to the reminder. For more information on adding alarms, see \textit{Setting an
+Alarm}.
+
+\begin{verbatim}
+reminder.addAlarm(alarm)
+\end{verbatim}
+
+Finally, it saves the reminder to the user's Calendar database:
+
+\begin{verbatim}
+do {
+    try store.save(reminder, commit: true)
+} catch {
+    handleError(error, with: reminder.title)
+}
+\end{verbatim}
+
+\textbf{Fetch Location-Based Reminders}
+
+The \texttt{fetchReminders(matching:completion:)} method asynchronously fetches all reminders matching a
+given predicate. When successful, \texttt{fetchReminders(matching: completion:)} returns an array that
+contains both time-based and location-based reminders.
+
+\begin{verbatim}
+// Predicate that fetches all reminders in all of the user's calendars.
+let predicate = store.predicateForReminders(in: nil)
+var result = [EKReminder]()
+store.fetchReminders(matching: predicate, completion: {(reminders: [Any]?) in
+    if let reminders = reminders as? [EKReminder] {
+        // Filter reminders for the location ones.
+        result = reminders.filter({(item: EKReminder) in item.isLocation })
+    }
+    DispatchQueue.main.async {
+        completion(result)
+    }
+})
+\end{verbatim}
+
+To retrieve location-based reminders, the sample parses this array for reminders defined with an existing alarm
+that has a structuredLocation and proximity value.
+
+\begin{verbatim}
+/// Indicates whether a reminder is a location-based one.
+var isLocation: Bool {
+    guard let alarms = self.alarms else { return false }
+    return !alarms.filter({(alarm: EKAlarm) in
+        return (alarm.structuredLocation != nil) && ((alarm.proximity == .enter) || (
+                alarm.proximity == .leave))
+    }).isEmpty
+}
+\end{verbatim}
+
+\textbf{Sort Reminders}
+
+Retrieving reminders from the Calendar database returns reminders sorted by creation date. To sort an array of
+\texttt{EKReminder} objects by title, or any other property, the sample implements \texttt{sorted(by:)} on the array with a
+predicate that uses the property.
+
+\begin{verbatim}
+/// - Returns: An array of reminders sorted by title in an ascending order.
+func sortedByTitle() -> [EKReminder] {
+    return self.sorted(by: {(first: EKReminder, second: EKReminder) in
+        first.title.localizedCaseInsensitiveCompare(second.title) == .orderedAscending
+    })
+}
+\end{verbatim}
+
+\textbf{See Also}
+
+Events and reminders
+
+$\rhd$ \textit{Creating events and reminders}
+
+Create and modify events and reminders in a person's database.
+
+$\rhd$ \textit{Retrieving events and reminders}
+
+Fetch events and reminders from the Calendar database.
+
+$\rhd$ \textit{Updating with notifications}
+
+Register for notifications about changes and keep your app up to date.
+
+\texttt{EKEvent}
+
+A class that represents an event in a calendar.
+
+\texttt{EKReminder}
+
+A class that represents a reminder in a calendar.
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>retrieving-events-reminders-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / Retrieving events and reminders
+
+Article
+
+\textbf{Retrieving events and reminders}
+
+Fetch events and reminders from the Calendar database.
+
+\textbf{Overview}
+
+To search for and return events and reminders from the Calendar database, you must connect to the event store, as discussed in "Accessing the event store."
+
+There are two ways to retrieve events and reminders. You can fetch via:
+
+\begin{enumerate}
+    \item Predicate, or search query, and return zero or more events that match a given query.
+    \item Unique identifier and return a single event that corresponds to the given identifier.
+\end{enumerate}
+
+\hrulefill
+
+Retrieving events from the Calendar database does not necessarily return events in chronological order. To sort an array of \texttt{EKEvent} objects by date, call \texttt{sortedArrayUsingSelector:} on the array, providing the selector for the \texttt{compareStartDateWithEvent:} method.
+
+\hrulefill
+
+\textbf{Search with Predicates}
+
+Predicates return events and reminders that match a search query.
+
+\textbf{Fetch Events}
+
+It's common to fetch events and reminders that fall within a date range. The \texttt{EKEventStore} method \texttt{eventsMatchingPredicate::} fetches all events that fall within the date range specified in the predicate you provide. The following listing demonstrates how to fetch all events that occur between one day before and one year after the current date.
+
+\hrulefill
+
+Although the \texttt{eventsMatchingPredicate:} method accepts a parameter of type \texttt{NSPredicate}, you must supply a predicate created with the \texttt{EKEventStore} method \texttt{predicateForEventsWithStartDate:endDate:calendars:}.
+
+\hrulefill
+
+Listing 1. Fetching events with a predicate
+\begin{verbatim}
+// Get the appropriate calendar.
+let calendar = Calendar.current
+
+// Create the start date components
+var oneDayAgoComponents = DateComponents()
+oneDayAgoComponents.day = -1
+let oneDayAgo = calendar.date(byAdding: oneDayAgoComponents, to: Date(), wrappingComp
+
+// Create the end date components.
+var oneYearFromNowComponents = DateComponents()
+oneYearFromNowComponents.year = 1
+var oneYearFromNow = calendar.date(byAdding: oneYearFromNowComponents, to: Date(), wr
+
+// Create the predicate from the event store's instance method.
+var predicate: NSPredicate? = nil
+if let anAgo = oneDayAgo, let aNow = oneYearFromNow {
+  predicate = store.predicateForEvents(withStart: anAgo, end: aNow, calendars: nil)
+}
+
+// Fetch all events that match the predicate.
+var events: [EKEvent]? = nil
+if let aPredicate = predicate {
+  events = store.events(matching: aPredicate)
+}
+\end{verbatim}
+
+You can specify a subset of calendars to search by passing an array of \texttt{EKCalendar} objects as the \texttt{calendars} parameter of the \texttt{predicateForEventsWithStartDate:endDate:calendars:} method. You can get the user's calendars from the event store's \texttt{calendarsForEntityType:} method. Passing \texttt{nil} tells the method to fetch from all of the user's calendars.
+
+Because the \texttt{eventsMatchingPredicate:} method is synchronous, you may not want to run it on your app's main thread. For asynchronous behavior, run the method on another thread with the \texttt{dispatch\_async} function or with an \texttt{NSOperation} object.
+
+\textbf{Fetch Reminders}
+
+You can call \texttt{fetchRemindersMatchingPredicate:completion:} to access multiple reminders that match a predicate. Pass a predicate returned by one of the following methods:
+
+\begin{itemize}
+    \item \texttt{predicateForIncompleteRemindersWithDueDateStarting:ending:calendars:} finds incomplete reminders within an optional time period.
+    \item \texttt{predicateForCompletedRemindersWithCompletionDateStarting:ending:calendars:} finds completed reminders within an optional time period.
+    \item \texttt{predicateForRemindersInCalendars:} finds all reminders.
+\end{itemize}
+
+You can iterate across matched reminders by passing a block to the completion argument, as shown in the listing below.
+
+\begin{verbatim}
+var predicate: NSPredicate? = store.predicateForReminders(in: nil)
+if let aPredicate = predicate {
+  store.fetchReminders(matching: aPredicate, completion: { ((reminders: [Any]?) ->
+    for reminder: EKReminder? in reminders as? [EKReminder?] ?? [EKReminder?]() {
+      // Do something for each reminder.
+    }
+  })
+}
+\end{verbatim}
+
+Unlike fetching events via predicate, you can fetch reminders via predicate asynchronously without dispatching to another thread.
+
+If you want to abort your fetch request by predicate, call \texttt{cancelFetchRequest:} while passing the identifier as returned by \texttt{fetchRemindersMatchingPredicate:completion:}.
+
+\textbf{Search with Unique Identifiers}
+
+If you know the event's unique identifier because you fetched it previously with a predicate, you can use the \texttt{EKEventStore} method \texttt{eventWithIdentifier:} to fetch the event. If it is a recurring event, this method will return the first occurrence of the event. You can get an event's unique identifier with the \texttt{eventIdentifier} property.
+
+Similarly, if you know a specific reminder's unique identifier from previously fetching it with a predicate, you can call the \texttt{calendarItemWithIdentifier:} instance method. \texttt{calendarItemWithIdentifier:} can fetch any calendar item (reminders and events), whereas \texttt{eventWithIdentifier:} fetches only events.
+
+\textbf{See Also}
+
+\textbf{Events and reminders}
+
+\begin{itemize}
+    \item Creating events and reminders
+
+    Create and modify events and reminders in a person's database.
+    \item Updating with notifications
+
+    Register for notifications about changes and keep your app up to date.
+    \item {} Managing Location-Based Reminders
+
+    Add, fetch, complete, remove, and sort location-based reminders in your app.
+\end{itemize}
+
+\textbf{EKEvent}
+
+A class that represents an event in a calendar.
+
+\textbf{EKReminder}
+
+A class that represents a reminder in a calendar.
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>setting-alarm-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+\noindent \textit{EventKit} / Setting an alarm
+
+\noindent Article
+
+\noindent \textbf{Setting an alarm}
+
+\noindent Alert users of events and reminders with an alarm.
+
+\noindent \textbf{Overview}
+
+\noindent An easy way to alert users of their upcoming events is to give them the option of setting alarms for their calendar items. Regardless of the app that's currently running, alarms come to the foreground as a notification and remind users of the scheduled event. If an alarm is set to a calendar event, the notification comes from the Calendar app; if an alarm is set to a reminder, the notification comes from the Reminders app.
+
+\noindent Alarms can be time-based, firing at a specified time, or location-based, firing when crossing a geofence (for more information about geofences, see "Configure Geofences"). Alarms can be applied to both calendar events and reminders.
+
+\noindent
+\begin{tabular}{|p{0.95\linewidth}|} \hline
+\textbf{Note}\\
+An alarm is not intended to serve as a \texttt{UILocalNotification}. An alarm requires you to create an event or reminder that is visible in the user's Calendar or Reminders app. A \texttt{UILocalNotification} is better suited for general purposes that don't involve the Calendar database. \\ \hline
+\end{tabular}
+
+\noindent \textbf{Add and Remove Alarms}
+
+\noindent Add an alarm to an event with the \texttt{addAlarm:} method.
+
+\noindent Alarms can be created with an absolute date or with an offset relative to the start date of the event. Alarms created with a relative offset must occur before or at the start date of the event.
+
+\noindent In OS X, you can trigger an action alongside the alarm. For example, you can set properties such as:
+
+\noindent \texttt{emailAddress} to send an email.
+
+\noindent \texttt{soundName} to play a sound.
+
+\noindent \texttt{url} to open a URL.
+
+\noindent Remove an alarm from an event with the \texttt{removeAlarm:} method.
+
+\noindent \textbf{Configure Geofences}
+
+\noindent A geofence is a virtual border surrounding a geographic location that, when crossed, triggers an alarm for an event. You specify the latitude and longitude of the center and the radius of the geofence.
+
+\noindent While geofence-enabled alarms can be applied to events, they are more practical for reminders. Geofences are a useful way to remind users of tasks they need to do when entering or exiting a certain region. For example, when a user leaves their workplace, an alarm can remind them to stop by the grocery store.
+
+\noindent
+\begin{tabular}{|p{0.95\linewidth}|} \hline
+\textbf{Note}\\
+Geofences are supported on both macOS and iOS, but they are more effective on mobile devices. \\ \hline
+\end{tabular}
+
+\noindent Configure a geofence for an event by creating an alarm and setting its structured location and proximity. Call the \texttt{locationWithTitle:} method to create a structured location. To set longitude and latitude coordinates, pass a \texttt{CLLocation} to the \texttt{geoLocation} property of the structured location returned. A value of \texttt{0} for the \texttt{radius} property will use the system's default radius; to choose a radius of your own, specify a value in meters.
+
+\noindent \textbf{See Also}
+
+\noindent \textbf{Alarms}
+
+\noindent \texttt{EKAlarm}
+
+\noindent A class that represents an alarm.
+
+\noindent \texttt{EKStructuredLocation}
+
+\noindent A class that specifies a geofence to activate the alarm of a calendar item.
+\newpage
+\end{document}]]></Content>
+    </File>
+    <File>
+      <Filename>updating-notifications-transcribed.tex</Filename>
+      <Content><![CDATA[
+\documentclass{article}
+\title{}
+\author{}
+\date{}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\begin{document}
+EventKit / Updating with notifications
+
+API Collection
+
+\textbf{Updating with notifications}
+
+Register for notifications about changes and keep your app up to date.
+
+Language: Objective-C
+
+\section*{Overview}
+
+It's possible for another process or app to modify the Calendar database while your app is running. If your app
+fetches calendar events or reminders, register to be notified about changes to the Calendar database to ensure
+the calendar and reminder information you display to the user is current.
+
+\section*{Register for Notifications}
+
+An \texttt{EKEventStore} object posts an \texttt{EKEventStoreChangedNotification} notification whenever it detects
+changes to the Calendar database. Register for this notification if your app handles event or reminder data.
+
+The code listing below registers for the \texttt{EKEventStoreChangedNotification} notification.
+
+\texttt{NotificationCenter.default.addObserver(self, selector: Selector("storeChanged:"), nam}
+
+\section*{Respond to Notifications}
+
+When you receive an \texttt{EKEventStoreChangedNotification} notification, it's possible the objects you've
+fetched-such as an \texttt{EKEvent}, \texttt{EKReminder}, or \texttt{EKCalendar}-have changed. The effect of the changes
+depends on whether an event was added, modified, or deleted:
+
+\begin{itemize}
+    \item If an event was added, it does not affect any of your previously fetched events or reminders, but the added
+    event may fall within the date range of events you are displaying to the user.
+    \item If an event was modified or deleted, properties of \texttt{EKEvent} and \texttt{EKReminder} objects representing that event
+    may become out of date.
+\end{itemize}
+
+Because your local data is often invalidated or incomplete when a change occurs in the Calendar database, you
+should refetch your current date range of events whenever you receive an \texttt{EKEventStoreChanged
+Notification} notification. If you are modifying an event and do not want to refetch it unless it is absolutely
+necessary, call the \texttt{refreshSourcesIfNecessary} method on the event. If the method returns YES, you can
+continue to use the event; otherwise, you must refetch it.
+
+\textbf{Note}
+
+Events being modified in an event view controller with EventKitUI for iOS are updated automatically when a
+change occurs in the Calendar database. See EventKit UI for more.
+
+\section*{Topics}
+
+Receiving a Notification
+
+\texttt{EKEventStoreChangedNotification}
+
+A notification posted when changes are made to the Calendar database.
+
+\section*{See Also}
+
+Events and reminders
+
+Creating events and reminders
+
+Create and modify events and reminders in a person's database.
+
+Retrieving events and reminders
+
+Fetch events and reminders from the Calendar database.
+
+{} Managing Location-Based Reminders
+
+Add, fetch, complete, remove, and sort location-based reminders in your app.
+
+\texttt{EKEvent}
+
+A class that represents an event in a calendar.
+
+\texttt{EKReminder}
+
+A class that represents a reminder in a calendar.
+
+\newpage
+\end{document}]]></Content>
+    </File>
+  </FileContents>
+</concatobjective-c>
